@@ -3,11 +3,13 @@ using System.Collections;
 
 public class GeometryHelper : MonoBehaviour {
 
-	public static Mesh CreatePlane(int numEdgeVerts, float edgeLength) {
+	public static Mesh CreatePlaneXY(int numEdgeVerts, float edgeLength, float zCoord = 0.0f) {
 		int numVerts = numEdgeVerts * numEdgeVerts;
 		
 		float ds = edgeLength / (numEdgeVerts - 1);
 		float dt = 1.0f / (numEdgeVerts - 1);
+		
+		Debug.Log("zCoord = " + zCoord + ", ds = " + ds);
 		
 		// create vertices
 		
@@ -15,7 +17,7 @@ public class GeometryHelper : MonoBehaviour {
 		Vector3[] vertices = new Vector3[numVerts];
 		Vector2[] texCoords = new Vector2[numVerts];
 		
-		Vector3 pos = Vector3.zero;
+		Vector3 pos = new Vector3(0.0f, 0.0f, zCoord);
 		Vector2 tcoord = Vector2.zero;
 		for(int i = 0; i < numEdgeVerts; ++i) {
 			for(int j = 0; j < numEdgeVerts; ++j) {

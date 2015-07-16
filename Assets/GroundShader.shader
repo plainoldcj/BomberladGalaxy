@@ -49,8 +49,9 @@
 			}
 			
 			void vert(inout appdata_full input) {
+				float zOff = input.vertex.z;
 				float3 pos = mul(_LocalToWorld, input.vertex).xyz;
-				pos = _SphereRadius * ParamSphere(MapUV(MapST(pos.xy)));
+				pos = (_SphereRadius + zOff) * ParamSphere(MapUV(MapST(pos.xy)));
 				input.vertex.xyz = pos;
 			}
 			

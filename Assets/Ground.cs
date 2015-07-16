@@ -27,7 +27,7 @@ public class Ground : MonoBehaviour {
 		Globals globals = gameController.GetComponent<Globals>();
 		float edgeLength = globals.m_tileEdgeLength * globals.m_numTilesPerEdge;
 		
-		m_mesh = GeometryHelper.CreatePlane(numEdgeVerts, edgeLength);
+		m_mesh = GeometryHelper.CreatePlaneXY(numEdgeVerts, edgeLength);
 		m_mesh.name = "GroundMesh";
 	}
 	
@@ -52,8 +52,8 @@ public class Ground : MonoBehaviour {
 			GameObject tile = GameObject.Instantiate(m_tilePrefab);
 			tile.transform.parent = this.transform;
 			tile.name = "GroundTile" + i;
-			GroundTile groundTile = tile.GetComponent<GroundTile>();
-			groundTile.Init(m_mesh, transform.position + offsets[i]);
+			MeshFilterInstance meshFilterIns = tile.GetComponent<MeshFilterInstance>();
+			meshFilterIns.Init(m_mesh, transform.position + offsets[i]);
 		}
 	}
 
