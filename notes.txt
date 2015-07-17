@@ -1,0 +1,26 @@
+Bomberlad Galaxy, notes for developers
+
+The map is a square grid of tiles. The tile in the upper left-hand
+corner has coordinates (0, 0).
+
+Map-space is a two-dimensional space that is mapped onto a sphere.
+Let mapSpace be the size of the map in map-space, i.e., the number
+of tiles on one edge times the edge length of a tile.
+
+Initially, the map tile (0, 0) has map-space coordinate
+(-0.5 * mapSize, 0.5 * mapSize).
+
+We call the rectangular region with corners
+(-0.5 * mapSize, 0.5 * mapSize) and (0.5 * mapSize, -0.5 * mapSize)
+the mapping domain.
+The mapping domain is mapped (projected) onto a sphere.
+Vertices outside the mapping domain are wrapped around.
+
+To this end, every vertex in the mapping domain is assigned relative
+st-coordinates ("texture-coordinate") in the range [0, 1].
+
+Then, the texture-coordinates are converted to uv-coordinates, which
+parameterize a sphere. The conversion is such that a center region
+of size (2 * PI) x (2 * PI) is mapped on the front side of the sphere.
+
+The sphere can be "rotated" by moving the map origin.

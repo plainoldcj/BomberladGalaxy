@@ -21,6 +21,14 @@
 			// assumption: view matrix does only translate on z-axis
 			
 			static const float PI = 3.14159265;
+			
+			float3 Warp(float3 pos) {
+				if(pos.x > _MappingDomain) pos.x -= 2.0 * _MappingDomain;
+				if(pos.y > _MappingDomain) pos.y -= 2.0 * _MappingDomain;
+				if(pos.x < -_MappingDomain) pos.x += 2.0 * _MappingDomain;
+				if(pos.y < -_MappingDomain) pos.y += 2.0 * _MappingDomain;
+				return pos;
+			}
 
 			// maps xy-coordinates from eye space to texture space (st-coordinates)			
 			float2 MapST(float2 pos) {
@@ -51,7 +59,13 @@
 			void vert(inout appdata_full input) {
 				float zOff = input.vertex.z;
 				float3 pos = mul(_LocalToWorld, input.vertex).xyz;
-				pos = (_SphereRadius + zOff) * ParamSphere(MapUV(MapST(pos.xy)));
+				pos = Warp(pos);
+				float2 param = MapUV(MapST(pos.xy));
+				if(param.y < -0.5 * PI || param.y > 0.5 * PI) {
+					pos = float3(0.0f, 0.0f, 0.0f);
+				} else {
+					pos = (_SphereRadius + zOff) * ParamSphere(param);
+				}
 				input.vertex.xyz = pos;
 			}
 			
