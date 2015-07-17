@@ -36,6 +36,8 @@ public class Block : MonoBehaviour {
 	
 	private GameObject 	m_mapOrigin;
 	private Type		m_type = Type.Unknown;
+	
+	private Vector2		m_tilePos = Vector2.zero; // integer tile coordinates
 
 	private static Mesh m_capMesh = null;
 	
@@ -47,8 +49,27 @@ public class Block : MonoBehaviour {
 		}
 	}
 	
-	void Initialize(Type type) {
+	// returns the position in map-space
+	private Vector2 GetMapPosition() {
+		Globals globals = GameObject.FindWithTag("GameController").GetComponent<Globals>();
+		float tileSize = globals.m_tileEdgeLength; // TODO: cache this value
+		
+		return new Vector2(m_tilePos.x, -m_tilePos.y) * tileSize;
+	}
+	
+	public void Init(Type type) {
 		m_type = type;
+		
+		Texture2D texture = m_stoneTexture;
+		if(Type.Wood == type) {
+			texture = m_woodTexture;
+		}
+		GetComponent<Renderer>().material.SetTexture("_DiffuseTex", texture);
+		GetComponent<Renderer>().material.SetTextureScale("_DiffuseTex", new Vector2(1.0f, 1.0f));
+	}
+	
+	public void SetTilePosition(Vector2 pos) {
+		m_tilePos = pos;
 	}
 
 	// Use this for initialization
@@ -71,8 +92,14 @@ public class Block : MonoBehaviour {
 			new Vector3(-0.5f * mapSize, 0.5f * mapSize, 0.0f),
 			Quaternion.identity,
 			new Vector3(1.0f, 1.0f, 1.0f));
+			
+		Vector2 mapPos = GetMapPosition();
+		Matrix4x4 localToMap = Matrix4x4.TRS(
+			new Vector3(mapPos.x, mapPos.y, 0.0f),
+			Quaternion.identity,
+			new Vector3(1.0f, 1.0f, 1.0f));
 		
-		Matrix4x4 localToWorld = m_mapOrigin.transform.localToWorldMatrix * offset;
+		Matrix4x4 localToWorld = m_mapOrigin.transform.localToWorldMatrix * offset * localToMap;
 		
 		GetComponent<Renderer>().material.SetMatrix("_LocalToWorld", localToWorld);
 		GetComponent<Renderer>().material.SetFloat("_MappingDomain", 0.5f * mapSize);	
