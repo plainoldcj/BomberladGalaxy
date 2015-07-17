@@ -22,10 +22,9 @@ public class Ground : MonoBehaviour {
 		
 		const int numEdgeVerts = 50;
 		
-		Globals globals = gameController.GetComponent<Globals>();
-		float edgeLength = globals.m_tileEdgeLength * globals.m_numTilesPerEdge;
+		float edgeLength = Globals.m_tileEdgeLength * Globals.m_numTilesPerEdge;
 		
-		m_mesh = GeometryHelper.CreatePlaneXY(50, 25, edgeLength);
+		m_mesh = GeometryHelper.CreatePlaneXY(50, 25, edgeLength, Matrix4x4.identity);
 		m_mesh.name = "GroundMesh";
 	}
 
@@ -41,8 +40,7 @@ public class Ground : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Globals globals = GameObject.FindWithTag("GameController").GetComponent<Globals>();
-		float mapSize = globals.m_tileEdgeLength * globals.m_numTilesPerEdge;
+		float mapSize = Globals.m_tileEdgeLength * Globals.m_numTilesPerEdge;
 		
 		// this moves the ground map so that it initially fills the entire mapping domain
 		Matrix4x4 offset = Matrix4x4.TRS(

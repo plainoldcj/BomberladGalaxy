@@ -8,9 +8,12 @@ public class Globals : MonoBehaviour {
 	*/
 
 	// map constants
-	public int m_numTilesPerEdge = 20;
+	public static readonly int 		m_numTilesPerEdge = 20;
 	
 	// map geometry
-	public float m_tileEdgeLength = 1.0f;
+	public static readonly float 	m_tileEdgeLength = 1.0f;
+	
+	public static readonly int		m_blockDetail = 10;		// number of vertical edge vertices
+	public static readonly float 	m_blockHeight = 0.5f;
 
 }

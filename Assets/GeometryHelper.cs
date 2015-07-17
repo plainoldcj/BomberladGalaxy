@@ -3,7 +3,8 @@ using System.Collections;
 
 public class GeometryHelper : MonoBehaviour {
 
-	public static Mesh CreatePlaneXY(int numVertsX, int numVertsY, float edgeLength, float zCoord = 0.0f) {	
+	// TODO: parameter 'distort' unused at the moment
+	public static Mesh CreatePlaneXY(int numVertsX, int numVertsY, float edgeLength, Matrix4x4 distort) {	
 		int numVerts = numVertsX * numVertsY;
 		
 		float dsx = edgeLength / (numVertsX - 1);
@@ -17,12 +18,12 @@ public class GeometryHelper : MonoBehaviour {
 		Vector3[] vertices = new Vector3[numVerts];
 		Vector2[] texCoords = new Vector2[numVerts];
 		
-		Vector3 pos = new Vector3(0.0f, 0.0f, zCoord);
+		Vector3 pos = new Vector3(0.0f, 0.0f, 0.0f);
 		Vector2 tcoord = Vector2.zero;
 		for(int i = 0; i < numVertsY; ++i) {
 			for(int j = 0; j < numVertsX; ++j) {
 				int vidx = numVertsX * i + j;
-				vertices[vidx] = pos;
+				vertices[vidx] = distort.MultiplyPoint(pos);
 				texCoords[vidx] = tcoord;
 				pos.x += dsx;
 				tcoord.x += dtx;
@@ -65,7 +66,6 @@ public class GeometryHelper : MonoBehaviour {
 		          "numVertsX = " + numVertsX + ", " +
 		          "numVertsY = " + numVertsY + ", " +
 		          "edgeLength = " + edgeLength + ", " +
-		          "zCoord = " + zCoord + ", " +
 		          "ds = (" + dsx + ", " + dsy + ")");
 		
 		return mesh;

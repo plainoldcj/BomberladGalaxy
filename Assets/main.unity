@@ -326,8 +326,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3b696787005e964686f7f426122e69a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_numTilesPerEdge: 20
-  m_tileEdgeLength: 1
 --- !u!4 &1589207021
 Transform:
   m_ObjectHideFlags: 0
@@ -420,7 +418,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2124941250}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: -.159999996, z: -12.6300001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

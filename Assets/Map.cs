@@ -6,8 +6,7 @@ public class Map : MonoBehaviour {
 	public GameObject m_blockPrefab;
 
 	private void Init() {
-		Globals globals = GameObject.FindWithTag("GameController").GetComponent<Globals>();
-		int numTilesPerEdge = globals.m_numTilesPerEdge;
+		int numTilesPerEdge = Globals.m_numTilesPerEdge;
 		
 		// spawn probabilities
 		const float probBlock = 0.5f;
@@ -17,6 +16,7 @@ public class Map : MonoBehaviour {
 			for(int j = 0; j < numTilesPerEdge; ++j) {
 				if(probBlock <= Random.Range(0.0f, 1.0f)) {
 					GameObject block = Instantiate(m_blockPrefab);
+					block.transform.parent = transform;
 					
 					Block.Type type = Block.Type.Stone2;
 					if(probWood <= Random.Range(0.0f, 1.0f)) {

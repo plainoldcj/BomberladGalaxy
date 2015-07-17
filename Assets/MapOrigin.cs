@@ -10,8 +10,7 @@ public class MapOrigin : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Globals globals = GameObject.FindWithTag("GameController").GetComponent<Globals>();
-		float mapSize = globals.m_tileEdgeLength * globals.m_numTilesPerEdge;
+		float mapSize = Globals.m_tileEdgeLength * Globals.m_numTilesPerEdge;
 		
 		Vector3 pos = transform.position;
 		while(pos.x > mapSize) pos.x -= mapSize;
