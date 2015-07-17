@@ -8,7 +8,7 @@ public class Globals : MonoBehaviour {
 	*/
 
 	// map constants
-	public int m_numTilesPerEdge = 10;
+	public int m_numTilesPerEdge = 20;
 	
 	// map geometry
 	public float m_tileEdgeLength = 1.0f;

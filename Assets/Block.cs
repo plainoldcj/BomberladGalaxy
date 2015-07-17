@@ -24,7 +24,7 @@ public class Block : MonoBehaviour {
 	private static void TouchCapMesh() {
 		if(null == m_capMesh) {
 			Globals globals = GameObject.FindWithTag("GameController").GetComponent<Globals>();
-			m_capMesh = GeometryHelper.CreatePlaneXY(5, 0.25f, 0.5f);
+			m_capMesh = GeometryHelper.CreatePlaneXY(10, 5, 1.0f, 0.1f);
 			m_capMesh.name = "cap";
 		}
 	}

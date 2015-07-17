@@ -282,7 +282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3b696787005e964686f7f426122e69a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_numTilesPerEdge: 10
+  m_numTilesPerEdge: 20
   m_tileEdgeLength: 1
 --- !u!4 &1589207021
 Transform:

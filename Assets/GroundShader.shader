@@ -1,6 +1,6 @@
 ﻿Shader "Custom/GroundShader" {
 	Properties {
-		_MappingDomain ("mapping domain", Float) = 20.0
+		_MappingDomain ("mapping domain", Float) = 10.0
 		_SphereRadius ("sphere radius", Float) = 5.0
 		_DiffuseTex ("diffuse texture", 2D) = "white" {}
 	}
@@ -36,7 +36,7 @@
 				if(u > 2.0 * PI) u -= 2.0 * PI;
 				return float2(
 					u,
-					texCoords.y * PI - 0.5 * PI);
+					texCoords.y * 2.0 * PI - PI);
 			}
 			
 			// returns point on parametric sphere

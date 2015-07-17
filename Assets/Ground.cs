@@ -27,7 +27,7 @@ public class Ground : MonoBehaviour {
 		Globals globals = gameController.GetComponent<Globals>();
 		float edgeLength = globals.m_tileEdgeLength * globals.m_numTilesPerEdge;
 		
-		m_mesh = GeometryHelper.CreatePlaneXY(numEdgeVerts, edgeLength);
+		m_mesh = GeometryHelper.CreatePlaneXY(50, 25, edgeLength);
 		m_mesh.name = "GroundMesh";
 	}
 	
