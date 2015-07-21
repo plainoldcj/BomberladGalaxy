@@ -30,42 +30,26 @@
 				return pos;
 			}
 
-			// maps xy-coordinates from eye space to texture space (st-coordinates)			
+			// maps xy-coordinates from [-mappingDomain, mappingDomain] to [-1.0, 1.0]			
 			float2 MapST(float2 pos) {
-				float f = 1.0 / (2.0 * _MappingDomain);
-				return float2(
-					clamp(f * (pos.x + _MappingDomain), 0.0, 1.0),
-					1.0 - clamp(f * (pos.y + _MappingDomain), 0.0, 1.0));
-			}
-			
-			// maps texture coordinates to parametric sphere coordinates (uv-coordinates)
-			float2 MapUV(float2 texCoords) {
-				float u = 2.0 * PI * texCoords.x + 0.5 * PI;
-				if(u > 2.0 * PI) u -= 2.0 * PI;
-				return float2(
-					u,
-					texCoords.y * 2.0 * PI - PI);
-			}
-			
-			// returns point on parametric sphere
-			float3 ParamSphere(float2 coords) {
-				float3 v = float3(
-					cos(coords.x) * cos(coords.y),
-					sin(coords.x) * cos(coords.y),
-					sin(coords.y));
-				return float3(v.x, -v.z, v.y);
+				return (1.0 / _MappingDomain) * pos.xy;
 			}
 			
 			void vert(inout appdata_full input) {
-				float zOff = input.vertex.z;
 				float3 pos = mul(_LocalToWorld, input.vertex).xyz;
+                float zOff = pos.z;
 				pos = Warp(pos);
-				float2 param = MapUV(MapST(pos.xy));
-				if(param.y < -0.5 * PI || param.y > 0.5 * PI) {
-					pos = float3(0.0f, 0.0f, 0.0f);
-				} else {
-					pos = (_SphereRadius + zOff) * ParamSphere(param);
-				}
+                
+                float2 pos2 = MapST(pos.xy);
+                
+                float r = min(length(pos2), 1.0);
+                
+                float phi = atan2(pos2.y, pos2.x);
+                float theta = PI * r;
+                
+                pos = (_SphereRadius + zOff) * float3(
+                    sin(theta) * cos(phi), sin(theta) * sin(phi), -cos(theta));
+                
 				input.vertex.xyz = pos;
 			}
 			

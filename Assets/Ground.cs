@@ -24,7 +24,7 @@ public class Ground : MonoBehaviour {
 		
 		float edgeLength = Globals.m_tileEdgeLength * Globals.m_numTilesPerEdge;
 		
-		m_mesh = GeometryHelper.CreatePlaneXY(50, 25, edgeLength, Matrix4x4.identity);
+		m_mesh = GeometryHelper.CreatePlaneXY(100, 100, edgeLength, Matrix4x4.identity);
 		m_mesh.name = "GroundMesh";
 	}
 

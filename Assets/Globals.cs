@@ -14,6 +14,6 @@ public class Globals : MonoBehaviour {
 	public static readonly float 	m_tileEdgeLength = 1.0f;
 	
 	public static readonly int		m_blockDetail = 10;		// number of vertical edge vertices
-	public static readonly float 	m_blockHeight = 0.5f;
+	public static readonly float 	m_blockHeight = 1f;
 
 }
