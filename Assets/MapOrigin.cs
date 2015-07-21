@@ -8,8 +8,9 @@ public class MapOrigin : MonoBehaviour {
 	
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	void Update() { }
+    
+	public void SortedUpdate () {
 		float mapSize = Globals.m_tileEdgeLength * Globals.m_numTilesPerEdge;
 		
 		Vector3 pos = transform.position;

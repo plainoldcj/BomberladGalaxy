@@ -37,9 +37,10 @@ public class Ground : MonoBehaviour {
 		MeshFilter meshFilter = GetComponent<MeshFilter>();
 		meshFilter.mesh = m_mesh;
 	}
+    
+    void Update() { }
 	
-	// Update is called once per frame
-	void Update () {
+	public void SortedUpdate () {
 		float mapSize = Globals.m_tileEdgeLength * Globals.m_numTilesPerEdge;
 		
 		// this moves the ground map so that it initially fills the entire mapping domain

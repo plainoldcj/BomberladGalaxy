@@ -172,6 +172,10 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!4 &871770565 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 413518, guid: c01bd19ad84a51e439a479f654b1923c, type: 2}
+  m_PrefabInternal: {fileID: 1261631972}
 --- !u!1 &888450734
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,5 +370,5 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 871770565}
+  m_RootOrder: 0

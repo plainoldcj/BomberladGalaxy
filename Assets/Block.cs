@@ -166,8 +166,9 @@ public class Block : MonoBehaviour {
 	// Use this for initialization
 	void Start () {	}
 	
-	// Update is called once per frame
-	void Update () {
+	void Update() { }
+    
+	public void SortedUpdate () {
 		float mapSize = Globals.m_tileEdgeLength * Globals.m_numTilesPerEdge;
 		
 		// this moves the ground map so that it initially fills the entire mapping domain

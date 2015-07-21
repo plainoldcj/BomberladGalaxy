@@ -11,7 +11,7 @@ GameObject:
   - 114: {fileID: 11428868}
   m_Layer: 0
   m_Name: Block
-  m_TagString: Untagged
+  m_TagString: TAG_BLOCK
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53,6 +53,10 @@ Prefab:
       propertyPath: m_blockPiecePrefab
       value: 
       objectReference: {fileID: 178284, guid: 44f17592ad9bc254280231b622722bd7, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: TAG_BLOCK
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 186348}
