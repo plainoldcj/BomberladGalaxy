@@ -36,6 +36,8 @@ public class Ground : MonoBehaviour {
 		
 		MeshFilter meshFilter = GetComponent<MeshFilter>();
 		meshFilter.mesh = m_mesh;
+        
+        GetComponent<Renderer>().material.EnableKeyword("ENABLE_RIM_LIGHTING");
 	}
     
     void Update() { }

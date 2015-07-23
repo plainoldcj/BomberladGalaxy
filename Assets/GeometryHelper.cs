@@ -33,6 +33,37 @@ public class GeometryHelper : MonoBehaviour {
 			tcoord.x = 0.0f;
 			tcoord.y += dty;
 		}
+        
+        
+        /*
+        we store adjacent vertices in (tangent,texcoord1), so normals
+        may be computed in the shader. this is used by block mantles.
+        */
+        Vector4[] tangents = new Vector4[numVerts];
+        Vector2[] texCoords1 = new Vector2[numVerts];
+        
+        for(int i = 0; i < numVertsY; ++i) {
+            for(int j = 0; j < numVertsX; ++j) {
+                int vidx = numVertsX * i + j;
+                Vector3 v0, v1;
+                if((numVertsY - 1 == i) || (numVertsX - 1 == j)) {
+                    // just pretend block was slightly bigger. whatever.
+                    v0 = vertices[vidx] + dsx * distort.MultiplyVector(Vector3.right);
+                    v1 = vertices[vidx] + dsy * distort.MultiplyVector(Vector3.down);
+                } else {
+                    v0 = vertices[numVertsX * i + (j + 1)];
+                    v1 = vertices[numVertsX * (i + 1) + j];
+                }
+                
+                tangents[vidx].x    = v0.x;
+                tangents[vidx].y    = v0.y;
+                tangents[vidx].z    = v0.z;
+                
+                tangents[vidx].w    = v1.x;
+                texCoords1[vidx].x  = v1.y;
+                texCoords1[vidx].y  = v1.z;
+            }
+        }
 		
 		// create indices
 		
@@ -59,6 +90,8 @@ public class GeometryHelper : MonoBehaviour {
 		Mesh mesh = new Mesh();
 		mesh.vertices = vertices;
 		mesh.uv = texCoords;
+        mesh.uv2 = texCoords1;
+        mesh.tangents = tangents;
 		mesh.triangles = indices;
 		
 		// logging
