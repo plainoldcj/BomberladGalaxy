@@ -42,7 +42,7 @@ public class Map : MonoBehaviour {
 					
 					Block scr_block = block.GetComponent<Block>();
 					scr_block.Init(type);
-					scr_block.SetTilePosition(new Vector2(i, j));
+					scr_block.SetTilePosition(new Vector2i(i, j));
 				}
 
                 m_tileMap[numTilesPerEdge * i + j] = block;

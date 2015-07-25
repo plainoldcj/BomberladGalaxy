@@ -39,7 +39,7 @@ public class Block : MonoBehaviour {
 	private GameObject 	m_mapOrigin;
 	private Type		m_type = Type.Unknown;
 	
-	private Vector2		m_tilePos = Vector2.zero; // integer tile coordinates
+	private Vector2i    m_tilePos = Vector2i.zero; // integer tile coordinates
 	
 	private GameObject	m_cap;
 	private GameObject	m_mantle;
@@ -121,7 +121,7 @@ public class Block : MonoBehaviour {
 	
 	// returns the position in map-space
 	private Vector2 GetMapPosition() {
-		return new Vector2(m_tilePos.x, -m_tilePos.y) * Globals.m_tileEdgeLength;
+		return Globals.MapPositionFromTilePosition(m_tilePos);
 	}
 	
 	public void Init(Type type) {
@@ -164,7 +164,7 @@ public class Block : MonoBehaviour {
         m_mantle.GetComponent<Renderer>().material.EnableKeyword("COMPUTE_FLAT_NORMALS");
 	}
 	
-	public void SetTilePosition(Vector2 pos) {
+	public void SetTilePosition(Vector2i pos) {
 		m_tilePos = pos;
 	}
 

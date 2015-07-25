@@ -59,6 +59,19 @@ public class GameController : NetworkBehaviour {
 
         Vector2i[] spawnPos = CreateSpawnPositions();
 
+        // place players on spawn positions
+
+        for(int i = 0; i < NetworkClient.allClients.Count; ++i) {
+            NetworkConnection conn = NetworkClient.allClients[i].connection;
+
+            GameObject player = conn.playerControllers[0].gameObject;
+            Assert.Equals("Player", player.tag);
+
+            player.GetComponent<Player>().SV_SetTilePosition(spawnPos[i]);
+        }
+
+        // send "start game" message
+
         MSG_StartGame msg = new MSG_StartGame();
         msg.m_mapSeed = (int)System.DateTime.Now.Ticks;
         EncodeSpawnPositions(spawnPos, msg);

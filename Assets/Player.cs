@@ -1,12 +1,22 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 using System.Collections;
 
-public class Player : MonoBehaviour {
+public class Player : NetworkBehaviour {
 
     public float m_speed = 2.0f;
+
+    [SyncVar]
     public Vector2 m_mapPosition = Vector2.zero;
+
+    private Vector2i    m_tilePos = Vector2i.zero;
     
     private GameObject m_mapOrigin;
+
+    public void SV_SetTilePosition(Vector2i tilePos) {
+        m_tilePos = tilePos;
+        m_mapPosition = Globals.MapPositionFromTilePosition(m_tilePos);
+    }
 
 	// Use this for initialization
 	void Start () {
@@ -14,28 +24,7 @@ public class Player : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        if(Input.GetKey(KeyCode.RightArrow)) {
-            float dt = m_speed * Time.deltaTime;
-            m_mapPosition.x += dt;
-            m_mapOrigin.transform.position = m_mapOrigin.transform.position - new Vector3(dt, 0.0f, 0.0f);
-        }
-        if(Input.GetKey(KeyCode.LeftArrow)) {
-            float dt = m_speed * Time.deltaTime;
-            m_mapPosition.x -= dt;
-            m_mapOrigin.transform.position = m_mapOrigin.transform.position + new Vector3(dt, 0.0f, 0.0f);
-        }
-        if(Input.GetKey(KeyCode.UpArrow)) {
-            float dt = m_speed * Time.deltaTime;
-            m_mapPosition.y += dt;
-            m_mapOrigin.transform.position = m_mapOrigin.transform.position - new Vector3(0.0f, dt, 0.0f);
-        }
-        if(Input.GetKey(KeyCode.DownArrow)) {
-            float dt = m_speed * Time.deltaTime;
-            m_mapPosition.y -= dt;
-            m_mapOrigin.transform.position = m_mapOrigin.transform.position + new Vector3(0.0f, dt, 0.0f);
-        }
-    
+	void Update () { 
         float mapSize = Globals.m_tileEdgeLength * Globals.m_numTilesPerEdge;
         
         Vector2 pos = m_mapPosition;
