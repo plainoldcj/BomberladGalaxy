@@ -101,7 +101,6 @@ public class Block : MonoBehaviour {
 	
 	private static void TouchCapMesh() {
 		if(null == m_capMesh) {
-			Globals globals = GameObject.FindWithTag("GameController").GetComponent<Globals>();
 			Matrix4x4 distort = Matrix4x4.TRS(
 				new Vector3(0.0f, 0.0f, Globals.m_blockHeight),
 				Quaternion.identity, new Vector3(1.0f, 1.0f, 1.0f));

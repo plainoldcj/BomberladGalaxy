@@ -142,6 +142,8 @@ public class OfflineCanvasControl : CanvasControl
 	{
 		GuiLobbyManager.s_Singleton.StartHost();
 		GuiLobbyManager.s_Singleton.onlineCanvas.Show("Host");
+
+        MessageQueue.Instance.OnClientConnected();
 	}
 
 	public void OnGUIStartServer()
@@ -159,6 +161,8 @@ public class OfflineCanvasControl : CanvasControl
 		GuiLobbyManager.s_Singleton.networkAddress = hooks.GetAddress();
 		GuiLobbyManager.s_Singleton.StartClient();
 		GuiLobbyManager.s_Singleton.onlineCanvas.Show("Client");
+
+        MessageQueue.Instance.OnClientConnected();
 	}
 
 	public void OnGUIStartMatchMaker()

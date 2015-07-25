@@ -1,20 +1,37 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 using System.Collections;
 
-public class GameController : MonoBehaviour {
+[RequireComponent (typeof(NetworkIdentity))]
+
+public class GameController : NetworkBehaviour {
+
+    private void CL_StartGame(int mapSeed) {
+        GameObject.Find("Map").GetComponent<Map>().RpcCreate(mapSeed);
+    }
+
+    public override void OnStartServer ()
+    {
+        base.OnStartServer ();
+
+        MSG_StartGame msg = new MSG_StartGame();
+        msg.m_mapSeed = (int)System.DateTime.Now.Ticks;
+
+        NetworkServer.SendToAll(MessageTypes.m_startGame, msg);
+    }
 
 	void Start () {
-	    /*
-        when this method is called we know that the main scene has been loaded,
-        so we use it to initialize the game
-        */
-        
-        int mapSeed = (int)System.DateTime.Now.Ticks;
-        GameObject.Find("Map").GetComponent<Map>().RpcCreate(mapSeed);
 	}
 	
-	// Update is called once per frame
+    [ClientCallback]
 	void Update () {
-	
+        short msgType = -1;
+        MessageBase msgBase = null;
+        if(MessageQueue.Instance.PopMessage(out msgType, out msgBase)) {
+            if(MessageTypes.m_startGame == msgType) {
+                MSG_StartGame msg = (MSG_StartGame)msgBase;
+                CL_StartGame(msg.m_mapSeed);
+            }
+        }
 	}
 }
