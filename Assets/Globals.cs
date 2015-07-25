@@ -23,6 +23,7 @@ public class MSG_StartGame : MessageBase {
 }
 
 public class Globals {
+    public static readonly int      m_maxPlayers = 4;
 
 	/*
 	A map is a square array of tiles.
