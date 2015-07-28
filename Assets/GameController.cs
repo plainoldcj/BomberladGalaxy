@@ -11,24 +11,6 @@ public class GameController : NetworkBehaviour {
         GameObject.Find("Map").GetComponent<Map>().Create(mapSeed, spawnPos);
     }
 
-    static Vector2i[] CreateSpawnPositions() {
-        if(20 != Globals.m_numTilesPerEdge || 4 != Globals.m_maxPlayers) {
-            // at the moment, we just return positions
-            // that look good for a certain map size
-            Debug.Log("revisit spawn positions");
-        }
-
-        // place players somewhere in the middle of each quadrant
-        Vector2i[] pos = {
-            new Vector2i(5, 5),
-            new Vector2i(14, 14),
-            new Vector2i(5, 14),
-            new Vector2i(14, 5)
-        };
-
-        return pos;
-    }
-
     static void EncodeSpawnPositions(Vector2i[] pos, MSG_StartGame msg) {
         Assert.AreEqual(4, pos.Length);
 
@@ -57,18 +39,7 @@ public class GameController : NetworkBehaviour {
     {
         base.OnStartServer ();
 
-        Vector2i[] spawnPos = CreateSpawnPositions();
-
-        // place players on spawn positions
-
-        for(int i = 0; i < NetworkClient.allClients.Count; ++i) {
-            NetworkConnection conn = NetworkClient.allClients[i].connection;
-
-            GameObject player = conn.playerControllers[0].gameObject;
-            Assert.Equals("Player", player.tag);
-
-            player.GetComponent<Player>().SV_SetTilePosition(spawnPos[i]);
-        }
+        Vector2i[] spawnPos = Globals.GetSpawnPositions();
 
         // send "start game" message
 

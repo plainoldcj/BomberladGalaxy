@@ -10,10 +10,9 @@ GameObject:
   - 4: {fileID: 434904}
   - 33: {fileID: 3318192}
   - 23: {fileID: 2331690}
-  - 114: {fileID: 11405558}
   - 114: {fileID: 11418296}
   m_Layer: 0
-  m_Name: Player
+  m_Name: ViewPlayer
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,38 +61,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173416}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &11405558
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 173416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 186
-    i1: 99
-    i2: 124
-    i3: 221
-    i4: 239
-    i5: 195
-    i6: 66
-    i7: 164
-    i8: 154
-    i9: 10
-    i10: 196
-    i11: 43
-    i12: 29
-    i13: 86
-    i14: 254
-    i15: 68
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 1
 --- !u!114 &11418296
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -105,8 +72,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e7deb5288e687f4d808061bc8b7befb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_speed: 1
-  m_mapPosition: {x: 10.3599997, y: 10}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

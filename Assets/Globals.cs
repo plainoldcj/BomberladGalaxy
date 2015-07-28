@@ -41,4 +41,22 @@ public class Globals {
     public static Vector2 MapPositionFromTilePosition(Vector2i tilePos) {
         return new Vector2(tilePos.x, -tilePos.y) * m_tileEdgeLength;
     }
+
+    public static Vector2i[] GetSpawnPositions() {
+        if(20 != Globals.m_numTilesPerEdge || 4 != Globals.m_maxPlayers) {
+            // at the moment, we just return positions
+            // that look good for a certain map size
+            Debug.Log("revisit spawn positions");
+        }
+        
+        // place players somewhere in the middle of each quadrant
+        Vector2i[] pos = {
+            new Vector2i(5, 5),
+            new Vector2i(14, 14),
+            new Vector2i(5, 14),
+            new Vector2i(14, 5)
+        };
+        
+        return pos;
+    }
 }

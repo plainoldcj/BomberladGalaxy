@@ -47,65 +47,13 @@ public class Block : MonoBehaviour {
 	private static Mesh m_capMesh = null;
 	private static Mesh m_mantleMesh = null;
 	
-	private static Mesh CreateMantleMesh() {
-		// create four planes, one for each side, and combine them
-		
-		string[] sideNames = { "front", "right", "back", "left" };
-        
-        Matrix4x4[] transforms = new Matrix4x4[4];
-        
-        
-        // make blocks a little bit higher so that they intersect the ground
-        // and hide gaps resulting from different tessellations
-        Vector3 blockScale = new Vector3(Globals.m_tileEdgeLength, Globals.m_blockHeight * 1.2f, 1.0f);
-        
-        // front
-        transforms[0] = Matrix4x4.TRS(
-            new Vector3(0.0f, -Globals.m_tileEdgeLength, Globals.m_blockHeight),
-            Quaternion.Euler(90.0f, 0.0f, 0.0f),
-            blockScale);
-        
-        // right
-        transforms[1] = Matrix4x4.TRS(
-            new Vector3(Globals.m_tileEdgeLength, -Globals.m_tileEdgeLength, Globals.m_blockHeight),
-            Quaternion.Euler(0.0f, 90.0f, 90.0f),
-            blockScale);
-        
-        // back
-        transforms[2] = Matrix4x4.TRS(
-            new Vector3(Globals.m_tileEdgeLength, 0.0f, Globals.m_blockHeight),
-            Quaternion.Euler(-90.0f, 0.0f, 180.0f),
-            blockScale);
-        
-        // left
-        transforms[3] = Matrix4x4.TRS(
-            new Vector3(0.0f, 0.0f, Globals.m_blockHeight),
-            Quaternion.Euler(0.0f, -90.0f, -90.0f),
-            blockScale);
-		
-		CombineInstance[] cins = new CombineInstance[4];
-		for(int i = 0; i < 4; ++i) {
-			cins[i].mesh = GeometryHelper.CreatePlaneXY(
-				2 * Globals.m_blockDetail, Globals.m_blockDetail,
-				1.0f,
-				transforms[i]);
-			cins[i].mesh.name = sideNames[i];
-            cins[i].transform = Matrix4x4.identity;
-		}
-		
-		Mesh mesh = new Mesh();
-		mesh.CombineMeshes(cins);
-		mesh.name = "mantle";
-		return mesh;
-	}
-	
 	private static void TouchCapMesh() {
 		if(null == m_capMesh) {
 			Matrix4x4 distort = Matrix4x4.TRS(
 				new Vector3(0.0f, 0.0f, Globals.m_blockHeight),
 				Quaternion.identity, new Vector3(1.0f, 1.0f, 1.0f));
 			m_capMesh = GeometryHelper.CreatePlaneXY(
-				2 * Globals.m_blockDetail, Globals.m_blockDetail,
+				Globals.m_blockDetail, Globals.m_blockDetail,
 				Globals.m_tileEdgeLength,
 				distort);
 			m_capMesh.name = "cap";
@@ -114,7 +62,7 @@ public class Block : MonoBehaviour {
 	
 	private static void TouchMantleMesh() {
 		if(null == m_mantleMesh) {
-			m_mantleMesh = CreateMantleMesh();
+			m_mantleMesh = GeometryHelper.CreateBlockMantleMesh(Globals.m_blockDetail);
 			m_mantleMesh.name = "mantle";
 		}
 	}
