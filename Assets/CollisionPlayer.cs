@@ -18,11 +18,13 @@ public class CollisionPlayer : NetworkBehaviour {
 
         m_collisionMap = GameObject.Find("CollisionMap");
 
-	    // the spawn positions encode tile coordinates, so first we have
-        // to convert them to map coordinates
-        Vector2i tilePos = new Vector2i((int)transform.position.x, (int)transform.position.y);
-        Vector2 mapPos = Globals.MapPositionFromTilePosition(tilePos);
-        transform.position = new Vector3(mapPos.x, 0.0f, mapPos.y);
+        if (isLocalPlayer) {
+            // the spawn positions encode tile coordinates, so first we have
+            // to convert them to map coordinates
+            Vector2i tilePos = new Vector2i((int)transform.position.x, (int)transform.position.y);
+            Vector2 mapPos = Globals.MapPositionFromTilePosition(tilePos);
+            transform.position = new Vector3(mapPos.x, 0.0f, mapPos.y);
+        }
 
         // spawn the view player for this collision player
 
