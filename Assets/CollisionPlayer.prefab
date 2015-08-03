@@ -14,7 +14,7 @@ GameObject:
   - 114: {fileID: 11440364}
   m_Layer: 8
   m_Name: CollisionPlayer
-  m_TagString: Untagged
+  m_TagString: TAG_COLLISION_PLAYER
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -159,6 +159,18 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_UseGravity
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_myCollisionPlayerLayer.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_otherCollisionPlayersLayer.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: TAG_COLLISION_PLAYER
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

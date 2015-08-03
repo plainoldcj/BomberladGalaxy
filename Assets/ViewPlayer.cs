@@ -23,6 +23,11 @@ public class ViewPlayer : MonoBehaviour {
             m_collisionPlayer.transform.position.x,
             m_collisionPlayer.transform.position.z);
 
+        // wrap position to [0, mapSize]x[0, mapSize]
+        while(mapPos.x > mapSize) mapPos.x -= mapSize;
+        while(mapPos.x < 0.0f) mapPos.x += mapSize;
+        while(mapPos.y < -mapSize) mapPos.y += mapSize;
+        while(mapPos.y > 0.0f) mapPos.y -= mapSize;
         
         if(m_collisionPlayer.GetComponent<CollisionPlayer>().isLocalPlayer) {
             m_mapOrigin.transform.position = new Vector3(

@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - TAG_BLOCK
+  - TAG_COLLISION_PLAYER
   layers:
   - Default
   - TransparentFX
