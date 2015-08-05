@@ -30,10 +30,10 @@ public class ViewPlayer : MonoBehaviour {
         while(mapPos.y > 0.0f) mapPos.y -= mapSize;
         
         if(m_collisionPlayer.GetComponent<CollisionPlayer>().isLocalPlayer) {
-            m_mapOrigin.transform.position = new Vector3(
+            m_mapOrigin.GetComponent<MapOrigin>().SetPosition(new Vector3(
                 0.5f * mapSize - mapPos.x, 
                 0.5f * mapSize - mapPos.y,
-                0.0f);
+                0.0f));
         }
 
 		// this moves the ground map so that it initially fills the entire mapping domain
