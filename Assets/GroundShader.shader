@@ -11,7 +11,6 @@
 		CGPROGRAM
 		
 		#pragma surface surf Lambert vertex:vert addshadow
-        #pragma multi_compile ___ COMPUTE_FLAT_NORMALS
         #pragma multi_compile ___ ENABLE_RIM_LIGHTING
 		
 		#include "UnityCG.cginc"
@@ -34,10 +33,8 @@
 			return pos;
 		}
         
-        float3 MapOnSphere(float3 v) {
-            float3 pos = mul(_LocalToWorld, float4(v, 1.0)).xyz;
+        float3 MapOnSphere(float3 pos) {
             float zOff = pos.z;
-            pos = Warp(pos);
             
             float2 pos2 = (1.0 / _MappingDomain) * pos.xy;
             
@@ -51,21 +48,22 @@
         }
 		
 		void vert(inout appdata_full input) {
-			float3 pos = MapOnSphere(input.vertex.xyz);
+            float3 pos = mul(_LocalToWorld, float4(input.vertex.xyz, 1.0)).xyz;
+            pos = Warp(pos);
+
+			float3 p0 = MapOnSphere(pos);
+            float3 p1 = MapOnSphere(pos + float3(1, 0, 0));
+            float3 p2 = MapOnSphere(pos + float3(0, 1, 0));
                 
-            float3 normal;
-            #if COMPUTE_FLAT_NORMALS
-                float3 v0 = input.tangent.xyz;
-                float3 v1 = float3(input.tangent.w, input.texcoord1.xy);
-                
-                normal = normalize(cross(
-                    MapOnSphere(v1),
-                    MapOnSphere(v0)));
-            #else
-                normal = normalize(pos);
-            #endif
+            float3 N = normalize(p0);
+            float3 T = normalize(p1 - p0);
+            float3 B = normalize(p2 - p0);
+
+            float3 n = normalize(mul(_LocalToWorld, float4(input.normal, 0.0)));
+
+            float3 normal = n.x * T + n.y * B + n.z * N;
             
-			input.vertex.xyz = pos;
+			input.vertex.xyz = p0;
             input.normal.xyz = normal;
 		}
 		

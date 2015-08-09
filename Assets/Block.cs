@@ -109,7 +109,6 @@ public class Block : MonoBehaviour {
 		
 		m_mantle.GetComponent<Renderer>().material.SetTexture("_DiffuseTex", texture);
 		m_mantle.GetComponent<Renderer>().material.SetTextureScale("_DiffuseTex", new Vector2(1.0f, 1.0f));
-        m_mantle.GetComponent<Renderer>().material.EnableKeyword("COMPUTE_FLAT_NORMALS");
 	}
 	
 	public void SetTilePosition(Vector2i pos) {

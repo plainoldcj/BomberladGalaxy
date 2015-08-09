@@ -16,6 +16,7 @@ public class GeometryHelper : MonoBehaviour {
 		
 		// row-major grid layout
 		Vector3[] vertices = new Vector3[numVerts];
+        Vector3[] normals = new Vector3[numVerts];
 		Vector2[] texCoords = new Vector2[numVerts];
 		
 		Vector3 pos = new Vector3(0.0f, 0.0f, 0.0f);
@@ -24,6 +25,7 @@ public class GeometryHelper : MonoBehaviour {
 			for(int j = 0; j < numVertsX; ++j) {
 				int vidx = numVertsX * i + j;
 				vertices[vidx] = distort.MultiplyPoint(pos);
+                normals[vidx] = distort.MultiplyVector(Vector3.forward);
 				texCoords[vidx] = tcoord;
 				pos.x += dsx;
 				tcoord.x += dtx;
@@ -89,6 +91,7 @@ public class GeometryHelper : MonoBehaviour {
 		
 		Mesh mesh = new Mesh();
 		mesh.vertices = vertices;
+        mesh.normals = normals;
 		mesh.uv = texCoords;
         mesh.uv2 = texCoords1;
         mesh.tangents = tangents;
