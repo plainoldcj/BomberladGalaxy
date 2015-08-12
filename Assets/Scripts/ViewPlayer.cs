@@ -3,12 +3,11 @@ using System.Collections;
 
 public class ViewPlayer : MonoBehaviour {
 
-    private GameObject m_collisionPlayer;
-
     private GameObject m_mapOrigin;
+    private GameObject m_syncPlayer;
 
-	public void SetCollisionPlayer(GameObject collisionPlayer) {
-        m_collisionPlayer = collisionPlayer;
+	public void SetSyncPlayer(GameObject syncPlayer) {
+        m_syncPlayer = syncPlayer;
     }
 
 	void Start () {
@@ -18,18 +17,12 @@ public class ViewPlayer : MonoBehaviour {
 	void Update () {
         float mapSize = Globals.m_tileEdgeLength * Globals.m_numTilesPerEdge;
 
-        // copy position from my collision player
-        Vector2 mapPos = new Vector2(
-            m_collisionPlayer.transform.position.x,
-            m_collisionPlayer.transform.position.z);
-
-        // wrap position to [0, mapSize]x[0, mapSize]
-        while(mapPos.x > mapSize) mapPos.x -= mapSize;
-        while(mapPos.x < 0.0f) mapPos.x += mapSize;
-        while(mapPos.y < -mapSize) mapPos.y += mapSize;
-        while(mapPos.y > 0.0f) mapPos.y -= mapSize;
+        // copy position from my syncplayer and wrap it
+        Vector2 mapPos = Globals.WrapMapPosition(new Vector2(
+            m_syncPlayer.transform.position.x,
+            m_syncPlayer.transform.position.z));
         
-        if(m_collisionPlayer.GetComponent<CollisionPlayer>().isLocalPlayer) {
+        if(m_syncPlayer.GetComponent<SyncPlayer>().isLocalPlayer) {
             m_mapOrigin.GetComponent<MapOrigin>().SetPosition(new Vector3(
                 0.5f * mapSize - mapPos.x, 
                 0.5f * mapSize - mapPos.y,

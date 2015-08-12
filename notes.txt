@@ -27,16 +27,35 @@ The mapping function is based on the angular 360 fisheye projection.
 The sphere can be "rotated" by moving the map origin.
 
 ==================================================
-2. CollisionMap, CollisionPlayer
+2. SyncPlayer, ViewPlayer, CollisionPlayer
+==================================================
+
+For each player, there exist three gameobjects.  The SyncPlayer is the
+gameobject spawned for each player by the network manager.  It has a
+NetworkTransform component attached and is used to synchronize the player's
+position over the network. Note that the position of a SyncPlayer is *not*
+wrapped to be inside [0, mapPos]x[0, -mapPos], as this would mess with
+NetworkTransform's interpolation.
+A SyncPlayer has a character controller, because this results in better
+network smoothing.
+Each SyncPlayer spawns a ViewPlayer and a CollisionPlayer that both reference
+the position of the SyncPlayer.
+The ViewPlayer is the gameobject that is visible on the spherical map.
+The CollisionPlayer is used for collision detection and movement.
+In each frame, the delta-position of the CollisionPlayer is added to the
+SyncPlayer's position.
+
+==================================================
+3. CollisionMap, CollisionPlayer
 ==================================================
 
 Besides the spherical map that is seen by the players, there also exist a
 hidden, planar collision map. The collision map contains collision blocks and
 the collision player.
-A collision block is essentially a collider.  The collision player is the
-player gameobject of the network manager and has a character controller and a
-network transform attached to it. That is, the collision player is the
-"localClient" whose transform is synced over the network.
+A collision block is essentially a collider.
+The collision player has a character controller, and therefore also a collider.
+The collision player is the gameobject that is controlled by a player's input
+and dictates the position of the syncplayer.
 The idea is to leverage Unity's built-in physics and networking facilities
 to sync the collision player and then transfer its position on the actual
 game character.

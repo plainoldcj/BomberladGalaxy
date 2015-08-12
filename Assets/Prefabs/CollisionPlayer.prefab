@@ -10,8 +10,6 @@ GameObject:
   - 4: {fileID: 489614}
   - 114: {fileID: 11429442}
   - 143: {fileID: 14349408}
-  - 114: {fileID: 11437936}
-  - 114: {fileID: 11440364}
   m_Layer: 8
   m_Name: CollisionPlayer
   m_TagString: TAG_COLLISION_PLAYER
@@ -42,60 +40,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f04f1f5c7276d5b42b65625fd7cf369b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_viewPlayerPrefab: {fileID: 173416, guid: ba637cddefc342a49a0ac42b1d56fe44, type: 2}
   m_speed: 5
---- !u!114 &11437936
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 167258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 24
-    i1: 241
-    i2: 124
-    i3: 146
-    i4: 152
-    i5: 200
-    i6: 188
-    i7: 228
-    i8: 59
-    i9: 166
-    i10: 232
-    i11: 251
-    i12: 182
-    i13: 37
-    i14: 55
-    i15: 208
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 1
---- !u!114 &11440364
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 167258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1768714887, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TransformSyncMode: 4
-  m_SendInterval: .100000001
-  m_SyncRotationAxis: 7
-  m_RotationSyncCompression: 0
-  m_SyncSpin: 0
-  m_MovementTheshold: .00100000005
-  m_SnapThreshold: 5
-  m_InterpolateRotation: 1
-  m_InterpolateMovement: 1
 --- !u!143 &14349408
 CharacterController:
   m_ObjectHideFlags: 1

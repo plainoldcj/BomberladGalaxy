@@ -6,6 +6,7 @@ TagManager:
   tags:
   - TAG_BLOCK
   - TAG_COLLISION_PLAYER
+  - TAG_SYNC_PLAYER
   layers:
   - Default
   - TransparentFX

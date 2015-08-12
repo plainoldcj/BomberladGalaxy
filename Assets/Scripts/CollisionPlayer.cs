@@ -4,32 +4,19 @@ using System.Collections;
 
 [RequireComponent (typeof(CharacterController))]
 
-public class CollisionPlayer : NetworkBehaviour {
-
-    public GameObject   m_viewPlayerPrefab;
+public class CollisionPlayer : MonoBehaviour {
 
     public float m_speed = 5.0f;
 
     private CharacterController m_charController;
-    private GameObject          m_collisionMap;
+    private GameObject          m_syncPlayer;
+
+    public void SetSyncPlayer(GameObject syncPlayer) {
+        m_syncPlayer = syncPlayer;
+    }
 
 	void Start () {
         m_charController = GetComponent<CharacterController>();
-
-        m_collisionMap = GameObject.Find("CollisionMap");
-
-        if (isLocalPlayer) {
-            // the spawn positions encode tile coordinates, so first we have
-            // to convert them to map coordinates
-            Vector2i tilePos = new Vector2i((int)transform.position.x, (int)transform.position.y);
-            Vector2 mapPos = Globals.MapPositionFromTilePosition(tilePos);
-            transform.position = new Vector3(mapPos.x, 0.0f, mapPos.y);
-        }
-
-        // spawn the view player for this collision player
-
-        GameObject viewPlayer = Instantiate(m_viewPlayerPrefab);
-        viewPlayer.GetComponent<ViewPlayer>().SetCollisionPlayer(gameObject);
 
         // effectively disables collisions with other client's collision players
         foreach (GameObject otherPlayer in GameObject.FindGameObjectsWithTag("TAG_COLLISION_PLAYER"))
@@ -39,7 +26,15 @@ public class CollisionPlayer : NetworkBehaviour {
 	}
 	
 	void Update () {
-	    if(isLocalPlayer) {
+        // copy position from my syncplayer and wrap it
+        Vector2 mapPos = Globals.WrapMapPosition(new Vector2(
+            m_syncPlayer.transform.position.x,
+            m_syncPlayer.transform.position.z));
+        transform.position = new Vector3(mapPos.x, transform.position.y, mapPos.y);
+
+	    if(m_syncPlayer.GetComponent<SyncPlayer>().isLocalPlayer) {
+            Vector3 oldPosition = transform.position;
+
             if(Input.GetKey(KeyCode.RightArrow)) {
                 m_charController.SimpleMove(m_speed * Vector3.right);
             }
@@ -53,21 +48,8 @@ public class CollisionPlayer : NetworkBehaviour {
                 m_charController.SimpleMove(m_speed * -Vector3.forward);
             }
 
-            // instead of wrapping the collision player's position,
-            // we move the collision map, so that the collision player
-            // stays in its center part
-
-            float mapSize = Globals.m_tileEdgeLength * Globals.m_numTilesPerEdge;
-
-            Vector2 playerPos = new Vector2(transform.position.x, transform.position.z);
-            Vector2 mapPos = new Vector2(m_collisionMap.transform.position.x, m_collisionMap.transform.position.z);
-
-            while((playerPos - mapPos).x > mapSize) mapPos.x += mapSize;
-            while((playerPos - mapPos).x < 0.0f) mapPos.x -= mapSize;
-            while((playerPos - mapPos).y < -mapSize) mapPos.y -= mapSize;
-            while((playerPos - mapPos).y > 0.0f) mapPos.y += mapSize;
-
-            m_collisionMap.transform.position = new Vector3(mapPos.x, m_collisionMap.transform.position.y, mapPos.y);
+            Vector3 movement = transform.position - oldPosition;
+            m_syncPlayer.transform.position += movement;
         }
 	}
 }

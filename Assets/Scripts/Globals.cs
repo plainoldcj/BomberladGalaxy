@@ -42,6 +42,18 @@ public class Globals {
         return new Vector2(tilePos.x, -tilePos.y) * m_tileEdgeLength;
     }
 
+    // wrap position to [0, mapSize]x[0, -mapSize]
+    public static Vector2 WrapMapPosition(Vector2 mapPos) {
+        float mapSize = Globals.m_tileEdgeLength * Globals.m_numTilesPerEdge;
+
+        while(mapPos.x > mapSize) mapPos.x -= mapSize;
+        while(mapPos.x < 0.0f) mapPos.x += mapSize;
+        while(mapPos.y < -mapSize) mapPos.y += mapSize;
+        while(mapPos.y > 0.0f) mapPos.y -= mapSize;
+
+        return mapPos;
+    }
+
     public static Vector2i[] GetSpawnPositions() {
         if(20 != Globals.m_numTilesPerEdge || 4 != Globals.m_maxPlayers) {
             // at the moment, we just return positions

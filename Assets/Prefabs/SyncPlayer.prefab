@@ -1,0 +1,143 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &156224
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 469548}
+  - 114: {fileID: 11492428}
+  - 143: {fileID: 14387624}
+  - 114: {fileID: 11407894}
+  - 114: {fileID: 11478058}
+  m_Layer: 0
+  m_Name: SyncPlayer
+  m_TagString: TAG_SYNC_PLAYER
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &469548
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 156224}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11407894
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 156224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 213
+    i1: 136
+    i2: 173
+    i3: 30
+    i4: 16
+    i5: 82
+    i6: 87
+    i7: 228
+    i8: 234
+    i9: 208
+    i10: 226
+    i11: 63
+    i12: 74
+    i13: 175
+    i14: 3
+    i15: 229
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
+--- !u!114 &11478058
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 156224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 4
+  m_SendInterval: .100000001
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: .00100000005
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
+--- !u!114 &11492428
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 156224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41cfb93f3f30b894da5587f768d722ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_collisionPlayerPrefab: {fileID: 167258, guid: 18f17c9298c8bce43ba6e8fbb62537d0,
+    type: 2}
+  m_viewPlayerPrefab: {fileID: 173416, guid: ba637cddefc342a49a0ac42b1d56fe44, type: 2}
+--- !u!143 &14387624
+CharacterController:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 156224}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: .5
+  m_SlopeLimit: 45
+  m_StepOffset: .300000012
+  m_SkinWidth: .0799999982
+  m_MinMoveDistance: .00100000005
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_collisionPlayerPrefab
+      value: 
+      objectReference: {fileID: 167258, guid: 18f17c9298c8bce43ba6e8fbb62537d0, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_viewPlayerPrefab
+      value: 
+      objectReference: {fileID: 173416, guid: ba637cddefc342a49a0ac42b1d56fe44, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_groundPrefab
+      value: 
+      objectReference: {fileID: 191246, guid: 28c434c8cc2ffdc4fa4eb19824960fd6, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: TAG_SYNC_PLAYER
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 156224}
+  m_IsPrefabParent: 1

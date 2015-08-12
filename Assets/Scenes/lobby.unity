@@ -286,7 +286,7 @@ Prefab:
     - target: {fileID: 11475862, guid: c01bd19ad84a51e439a479f654b1923c, type: 2}
       propertyPath: m_GamePlayerPrefab
       value: 
-      objectReference: {fileID: 167258, guid: 18f17c9298c8bce43ba6e8fbb62537d0, type: 2}
+      objectReference: {fileID: 156224, guid: d588ad1e105257e4ead0e23f4aaf03e5, type: 2}
     - target: {fileID: 11475862, guid: c01bd19ad84a51e439a479f654b1923c, type: 2}
       propertyPath: m_MaxPlayersPerConnection
       value: 1
