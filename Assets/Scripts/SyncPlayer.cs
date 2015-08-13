@@ -44,12 +44,14 @@ public class SyncPlayer : NetworkBehaviour {
     }
 
 	void Update () {
-        if(Input.GetKeyDown(KeyCode.LeftControl)) {
-            Vector2 mapPos = Globals.WrapMapPosition(new Vector2(
-                transform.position.x,
-                transform.position.z));
+        if(isLocalPlayer) {
+            if(Input.GetKeyDown(KeyCode.LeftControl)) {
+                Vector2 mapPos = Globals.WrapMapPosition(new Vector2(
+                    transform.position.x,
+                    transform.position.z));
 
-            CmdSpawnBomb(mapPos);
+                CmdSpawnBomb(mapPos);
+            }
         }
 	}
 }
