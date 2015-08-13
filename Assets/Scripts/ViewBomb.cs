@@ -7,9 +7,9 @@ public class ViewBomb : MonoBehaviour {
     public Vector3 m_rotation = Vector3.zero;
     public Vector3 m_scale = Vector3.one;
 
-    private GameObject m_syncBomb;
-
-    private GameObject m_mapOrigin;
+    private GameObject  m_syncBomb;
+    private GameObject  m_mapOrigin;
+    private float       m_time = 0.0f;
 
     public void SetSyncBomb(GameObject syncBomb) {
         m_syncBomb = syncBomb;
@@ -24,6 +24,26 @@ public class ViewBomb : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        m_time += Time.deltaTime;
+        
+        float l = Mathf.Abs(Mathf.Sin(0.5f * Mathf.PI * m_time));
+        
+        float t = m_time / Globals.m_bombTimeout;
+        Color bodyColor = Color.white;
+        Color c1 = Color.Lerp(bodyColor, Color.red, t);
+        
+        float s1 = 1.0f + 0.5f * t;
+        
+        float s = Mathf.Lerp(1.0f, s1, l);
+        m_scale = new Vector3(s, s, s);
+        
+        GetComponent<Renderer>().materials[0].color = Color.Lerp(bodyColor, c1, l);
+        
+        Quaternion rotation = 
+            Quaternion.AngleAxis(90.0f * Time.time, new Vector3(1.0f, 1.0f, 0.0f)) *
+            Quaternion.AngleAxis(90.0f * Time.time, new Vector3(0.0f, 0.0f, 1.0f)) *
+            Quaternion.AngleAxis(-90.0f, new Vector3(1.0f, 0.0f, 0.0f));
+
         float mapSize = Globals.m_tileEdgeLength * Globals.m_numTilesPerEdge;
         
         // copy position from my syncbomb and wrap it
@@ -44,7 +64,7 @@ public class ViewBomb : MonoBehaviour {
             new Vector3(1.0f, 1.0f, -1.0f));
 
         Matrix4x4 localTransform = Matrix4x4.TRS(
-            m_position, Quaternion.Euler(m_rotation), m_scale);
+            m_position, Quaternion.Euler(m_rotation) * rotation, m_scale);
         
         Matrix4x4 localToWorld = m_mapOrigin.transform.localToWorldMatrix * offset * localToMap * localTransform;
         

@@ -38,6 +38,8 @@ public class Globals {
 	public static readonly int		m_blockDetail = 10;		// number of vertical edge vertices
 	public static readonly float 	m_blockHeight = 1f;
 
+    public static readonly float    m_bombTimeout = 3.0f; // in secs, must be odd
+
     public static Vector2 MapPositionFromTilePosition(Vector2i tilePos) {
         return new Vector2(tilePos.x, -tilePos.y) * m_tileEdgeLength;
     }

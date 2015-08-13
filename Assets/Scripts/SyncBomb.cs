@@ -14,6 +14,9 @@ public class SyncBomb : NetworkBehaviour {
 	    // spawn viewbomb for this syncbomb
         GameObject viewBomb = Instantiate(m_viewBombPrefab);
         viewBomb.GetComponent<ViewBomb>().SetSyncBomb(gameObject);
+
+        Destroy(gameObject, Globals.m_bombTimeout);
+        Destroy(viewBomb, Globals.m_bombTimeout);
 	}
 	
 	void Update () {

@@ -3,6 +3,7 @@
 		_MappingDomain ("mapping domain", Float) = 10.0
 		_SphereRadius ("sphere radius", Float) = 5.0
 		_DiffuseTex ("diffuse texture", 2D) = "white" {}
+        _Color ("diffuse color", Color) = (1.0, 1.0, 1.0, 1.0)
         _RimColor ("Rim Color", Color) = (0.26, 0.19, 0.16, 0.0)
         _RimPower ("Rim Power", Range(0.5, 8.0)) = 3.0
 	}
@@ -73,11 +74,12 @@
 		};
 		
 		sampler2D   _DiffuseTex;
+        float4      _Color;
         float4      _RimColor;
 		float       _RimPower;
         
 		void surf(Input IN, inout SurfaceOutput OUT) {
-			OUT.Albedo = tex2D(_DiffuseTex, IN.uv_DiffuseTex).rgb;
+			OUT.Albedo = _Color * tex2D(_DiffuseTex, IN.uv_DiffuseTex).rgb;
             
             #if ENABLE_RIM_LIGHTING
                 half rim = 1.0 - saturate(dot(normalize(IN.viewDir), OUT.Normal));
