@@ -7,9 +7,12 @@ public class ViewBomb : MonoBehaviour {
     public Vector3 m_rotation = Vector3.zero;
     public Vector3 m_scale = Vector3.one;
 
+    public GameObject m_explosionPrefab;
+
     private GameObject  m_syncBomb;
     private GameObject  m_mapOrigin;
     private float       m_time = 0.0f;
+    private Vector2     m_lastMapPos = Vector2.zero;
 
     public void SetSyncBomb(GameObject syncBomb) {
         m_syncBomb = syncBomb;
@@ -50,6 +53,7 @@ public class ViewBomb : MonoBehaviour {
         Vector2 mapPos = Globals.WrapMapPosition(new Vector2(
             m_syncBomb.transform.position.x,
             m_syncBomb.transform.position.z));
+        m_lastMapPos = mapPos;
         
         // this moves the ground map so that it initially fills the entire mapping domain
         Matrix4x4 offset = Matrix4x4.TRS(
@@ -71,4 +75,10 @@ public class ViewBomb : MonoBehaviour {
         GetComponent<Renderer>().material.SetMatrix("_LocalToWorld", localToWorld);
         GetComponent<Renderer>().material.SetFloat("_MappingDomain", 0.5f * mapSize);
 	}
+
+    void OnDestroy() {
+        GameObject explosion = Instantiate(m_explosionPrefab);
+        explosion.GetComponent<Explosion>().SetMapPosition(m_lastMapPos);
+        Destroy(explosion, Globals.m_explosionTimeout);
+    }
 }
