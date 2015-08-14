@@ -10,9 +10,14 @@ public class CollisionPlayer : MonoBehaviour {
 
     private CharacterController m_charController;
     private GameObject          m_syncPlayer;
+    private Vector3             m_lastMovement = Vector3.zero;
 
     public void SetSyncPlayer(GameObject syncPlayer) {
         m_syncPlayer = syncPlayer;
+    }
+
+    public Vector3 lastMovement {
+        get { return m_lastMovement; }
     }
 
 	void Start () {
@@ -50,6 +55,7 @@ public class CollisionPlayer : MonoBehaviour {
 
             Vector3 movement = transform.position - oldPosition;
             m_syncPlayer.transform.position += movement;
+            m_lastMovement = movement;
         }
 	}
 }

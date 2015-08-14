@@ -58,6 +58,38 @@ public class Globals {
         return mapPos;
     }
 
+    // *must* be consistent with shader code
+    public static Vector3 VS_Warp(Vector3 pos) {
+        float mapSize = Globals.m_tileEdgeLength * Globals.m_numTilesPerEdge;
+        float _MappingDomain = 0.5f * mapSize;
+
+        if(pos.x > _MappingDomain) pos.x -= 2.0f * _MappingDomain;
+        if(pos.y > _MappingDomain) pos.y -= 2.0f * _MappingDomain;
+        if(pos.x < -_MappingDomain) pos.x += 2.0f * _MappingDomain;
+        if(pos.y < -_MappingDomain) pos.y += 2.0f * _MappingDomain;
+        return pos;
+    }
+
+    // *must* be consistent with shader code
+    public static Vector3 VS_MapOnSphere(Vector3 pos) {
+        float zOff = pos.z;
+
+        float mapSize = Globals.m_tileEdgeLength * Globals.m_numTilesPerEdge;
+        float _MappingDomain = 0.5f * mapSize;
+        
+        Vector2 pos2 = (1.0f / _MappingDomain) * new Vector2(pos.x, pos.y);
+        
+        float r = Mathf.Min(pos2.magnitude, 1.0f);
+        
+        float phi = Mathf.Atan2(pos2.y, pos2.x);
+        float theta = Mathf.PI * r;
+
+        float _SphereRadius = 5.0f;
+
+        return (_SphereRadius + zOff) * new Vector3(
+            Mathf.Sin(theta) * Mathf.Cos(phi), Mathf.Sin(theta) * Mathf.Sin(phi), -Mathf.Cos(theta));
+    }
+
     public static Vector2i[] GetSpawnPositions() {
         if(20 != Globals.m_numTilesPerEdge || 4 != Globals.m_maxPlayers) {
             // at the moment, we just return positions

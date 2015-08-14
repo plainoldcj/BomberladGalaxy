@@ -9,6 +9,12 @@ public class SyncPlayer : NetworkBehaviour {
 
     public GameObject m_syncBombPrefab;
 
+    private GameObject m_collisionPlayer;
+
+    public GameObject collisionPlayer {
+        get { return m_collisionPlayer; }
+    }
+
 	void Start () {
         // effectively disables collisions with other client's sync players
         foreach (GameObject otherPlayer in GameObject.FindGameObjectsWithTag("TAG_SYNC_PLAYER"))
@@ -27,8 +33,8 @@ public class SyncPlayer : NetworkBehaviour {
 
         // spawn the collisionplayer for this syncplayer
 
-        GameObject collisionPlayer = Instantiate(m_collisionPlayerPrefab);
-        collisionPlayer.GetComponent<CollisionPlayer>().SetSyncPlayer(gameObject);
+        m_collisionPlayer = Instantiate(m_collisionPlayerPrefab);
+        m_collisionPlayer.GetComponent<CollisionPlayer>().SetSyncPlayer(gameObject);
         
         // spawn the viewplayer for this syncplayer
         
