@@ -44,7 +44,7 @@ public class SyncPlayer : NetworkBehaviour {
     [Command]
     void CmdSpawnBomb(Vector2 mapPos) {
         GameObject bomb = Instantiate(m_syncBombPrefab);
-        bomb.GetComponent<SyncBomb>().SetMapPosition(mapPos);
+        bomb.GetComponent<SyncBomb>().SetMapPosition(Globals.TileCenterFromMapPosition(mapPos));
         NetworkServer.Spawn(bomb);
     }
 

@@ -67,6 +67,20 @@ public class Globals {
         return new Vector2(tilePos.x, -tilePos.y) * m_tileEdgeLength;
     }
 
+    public static Vector2 TileCenterFromMapPosition(Vector2 mapPos)
+    {
+        /*
+        use this when rendering z-offset is fixed
+
+        return new Vector2(
+            (int)(mapPos.x + 0.5f * m_tileEdgeLength),
+            (int)(mapPos.y - 0.5f * m_tileEdgeLength));
+        */
+        return new Vector2(
+            (int)(mapPos.x + 0.5f * m_tileEdgeLength),
+            (int)mapPos.y - 0.5f * m_tileEdgeLength);
+    }
+
     // wrap position to [0, mapSize]x[0, -mapSize]
     public static Vector2 WrapMapPosition(Vector2 mapPos) {
         float mapSize = Globals.m_tileEdgeLength * Globals.m_numTilesPerEdge;
