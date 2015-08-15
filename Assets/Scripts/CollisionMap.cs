@@ -15,10 +15,14 @@ public class CollisionMap : MonoBehaviour {
         float mapSize = Globals.m_tileEdgeLength * Globals.m_numTilesPerEdge;
         Vector2[] offsets = {
             new Vector2(0.0f, 0.0f),
-            new Vector2(-mapSize, 0.0f),
-            new Vector2( mapSize, 0.0f),
-            new Vector2(0.0f, -mapSize),
-            new Vector2(0.0f,  mapSize)
+            new Vector2(-mapSize,  0.0f),
+            new Vector2( mapSize,  0.0f),
+            new Vector2( 0.0f,    -mapSize),
+            new Vector2( 0.0f,     mapSize),
+            new Vector2(-mapSize,  mapSize),
+            new Vector2( mapSize,  mapSize),
+            new Vector2(-mapSize, -mapSize),
+            new Vector2( mapSize, -mapSize)
         };
 
         for(int i = 0; i < numTilesPerEdge; ++i) {
@@ -28,7 +32,7 @@ public class CollisionMap : MonoBehaviour {
                     Vector2i tilePos = new Vector2i(i, j);
                     Vector2 centerMapPos = Globals.MapPositionFromTilePosition(tilePos);
 
-                    for(int k = 0; k < 5; ++k) {
+                    for(int k = 0; k < offsets.Length; ++k) {
                         GameObject block = Instantiate(m_blockPrefab);
                         block.transform.parent = gameObject.transform;
                         Vector2 mapPos = centerMapPos + offsets[k];
