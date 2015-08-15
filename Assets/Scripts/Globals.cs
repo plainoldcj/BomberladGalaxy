@@ -46,6 +46,23 @@ public class Globals {
     // from the collision map placed at y=0
     public static readonly float    m_syncYOff = -100.0f;
 
+    public static readonly Vector2[] m_mapGridOffsets;
+
+    static Globals() {
+        float mapSize = Globals.m_tileEdgeLength * Globals.m_numTilesPerEdge;
+        m_mapGridOffsets = new Vector2[] {
+            new Vector2(0.0f, 0.0f),
+            new Vector2(-mapSize,  0.0f),
+            new Vector2( mapSize,  0.0f),
+            new Vector2( 0.0f,    -mapSize),
+            new Vector2( 0.0f,     mapSize),
+            new Vector2(-mapSize,  mapSize),
+            new Vector2( mapSize,  mapSize),
+            new Vector2(-mapSize, -mapSize),
+            new Vector2( mapSize, -mapSize)
+        };
+    }
+
     public static Vector2 MapPositionFromTilePosition(Vector2i tilePos) {
         return new Vector2(tilePos.x, -tilePos.y) * m_tileEdgeLength;
     }

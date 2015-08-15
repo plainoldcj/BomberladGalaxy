@@ -63,6 +63,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_viewBombPrefab: {fileID: 142726, guid: 90820c64c4ade1440bd77d8da9739239, type: 2}
+  m_collisionBombPrefab: {fileID: 152172, guid: 76df34815069ed64ba97be10ab7a7b5c,
+    type: 2}
 --- !u!114 &11441836
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -127,6 +129,10 @@ Prefab:
       propertyPath: m_viewBombPrefab
       value: 
       objectReference: {fileID: 142726, guid: 90820c64c4ade1440bd77d8da9739239, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_collisionBombPrefab
+      value: 
+      objectReference: {fileID: 152172, guid: 76df34815069ed64ba97be10ab7a7b5c, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 115956}

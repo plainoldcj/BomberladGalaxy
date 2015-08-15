@@ -12,18 +12,7 @@ public class CollisionMap : MonoBehaviour {
 
         m_tileMap = new GameObject[tileMap.Length];
 
-        float mapSize = Globals.m_tileEdgeLength * Globals.m_numTilesPerEdge;
-        Vector2[] offsets = {
-            new Vector2(0.0f, 0.0f),
-            new Vector2(-mapSize,  0.0f),
-            new Vector2( mapSize,  0.0f),
-            new Vector2( 0.0f,    -mapSize),
-            new Vector2( 0.0f,     mapSize),
-            new Vector2(-mapSize,  mapSize),
-            new Vector2( mapSize,  mapSize),
-            new Vector2(-mapSize, -mapSize),
-            new Vector2( mapSize, -mapSize)
-        };
+        Vector2[] offsets = Globals.m_mapGridOffsets;
 
         for(int i = 0; i < numTilesPerEdge; ++i) {
             for(int j = 0; j < numTilesPerEdge; ++j) {
