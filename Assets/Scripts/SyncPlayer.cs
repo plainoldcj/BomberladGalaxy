@@ -27,8 +27,7 @@ public class SyncPlayer : NetworkBehaviour {
             // to convert them to map coordinates
             Vector2i tilePos = new Vector2i((int)transform.position.x, (int)transform.position.y);
             Vector2 mapPos = Globals.MapPositionFromTilePosition(tilePos);
-            float yOff = -100; // this moves the syncplayer away from the collisionmap at y=0
-            transform.position = new Vector3(mapPos.x, yOff, mapPos.y);
+            transform.position = new Vector3(mapPos.x, Globals.m_syncYOff, mapPos.y);
         }
 
         // spawn the collisionplayer for this syncplayer

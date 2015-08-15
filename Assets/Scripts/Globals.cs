@@ -42,6 +42,10 @@ public class Globals {
     public static readonly float    m_explosionTimeout = 3.0f;
     public static readonly float    m_explosionFadeIn = 0.2f;
 
+    // y-coordinate of Sync* gameobjects, which keeps their colliders away
+    // from the collision map placed at y=0
+    public static readonly float    m_syncYOff = -100.0f;
+
     public static Vector2 MapPositionFromTilePosition(Vector2i tilePos) {
         return new Vector2(tilePos.x, -tilePos.y) * m_tileEdgeLength;
     }
