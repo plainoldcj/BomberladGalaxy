@@ -43,9 +43,20 @@ public class SyncPlayer : NetworkBehaviour {
 	
     [Command]
     void CmdSpawnBomb(Vector2 mapPos) {
-        GameObject bomb = Instantiate(m_syncBombPrefab);
-        bomb.GetComponent<SyncBomb>().SetMapPosition(Globals.TileCenterFromMapPosition(mapPos));
-        NetworkServer.Spawn(bomb);
+        // first check if there is a bomb on this tile already
+        Vector3 colliderCenter = m_syncBombPrefab.GetComponent<SyncBomb>().m_collisionBombPrefab.GetComponent<SphereCollider>().center;
+        Vector3 rayOrigin = new Vector3(mapPos.x, 0.0f, mapPos.y) + colliderCenter;
+        RaycastHit[] hits = Physics.RaycastAll(rayOrigin + 50.0f * Vector3.up, Vector3.down, 100.0f);
+        bool hitBomb = false;
+        foreach (RaycastHit hit in hits)
+        {
+            if ("TAG_COLLISION_BOMB" == hit.transform.tag) hitBomb = true;
+        }
+        if (!hitBomb) {
+            GameObject bomb = Instantiate(m_syncBombPrefab);
+            bomb.GetComponent<SyncBomb>().SetMapPosition(Globals.TileCenterFromMapPosition(mapPos));
+            NetworkServer.Spawn(bomb);
+        }
     }
 
 	void Update () {

@@ -12,7 +12,7 @@ GameObject:
   - 114: {fileID: 11466034}
   m_Layer: 8
   m_Name: CollisionBomb
-  m_TagString: Untagged
+  m_TagString: TAG_COLLISION_BOMB
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,6 +74,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Center.y
       value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: TAG_COLLISION_BOMB
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
