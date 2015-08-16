@@ -18,9 +18,10 @@ public class CollisionBomb : MonoBehaviour {
         m_mapGridOffset = mapGridOffset;
     }
 
-    public void SetSyncBomb(GameObject syncBomb)
+    public GameObject syncBomb
     {
-        m_syncBomb = syncBomb;
+        get { return m_syncBomb; }
+        set { m_syncBomb = value; }
     }
 
     private Vector2 GetMapPosition()

@@ -14,11 +14,10 @@ to draw instances of the mesh.
 Because all blocks are identical, there exist a single cap mesh referenced
 by all cap tiles.
 
-There are four types of blocks.
-The first type is a wooden block that gets destroyed on first hit.
-There are three types of stone blocks (S0, S1, S2).
-When Si, i > 0, gets hit by a bomb, it is replaced by S(i-1).
-When S0 gets hit, it gets destroyed.
+There are two types of blocks.
+The first type is a wooden block which gets destroyed on first hit.
+The other type is a stone block which gets destryoed when its hitpoints
+reach zero.
 */
 
 public class Block : MonoBehaviour {
@@ -31,13 +30,12 @@ public class Block : MonoBehaviour {
 	public enum Type {
 		Unknown,
 		Wood,
-		Stone0,
-		Stone1,
-		Stone2
+		Stone
 	}
 	
 	private GameObject 	m_mapOrigin;
 	private Type		m_type = Type.Unknown;
+    private int         m_hitpoints = Globals.m_stoneBlockHitpoints;
 	
 	private Vector2i    m_tilePos = Vector2i.zero; // integer tile coordinates
 	

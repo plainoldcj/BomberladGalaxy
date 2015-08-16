@@ -4,6 +4,7 @@ using System.Collections;
 
 public class MessageTypes {
     public static readonly short m_startGame = MsgType.Highest + 1;
+    public static readonly short m_destroyBlock = MsgType.Highest + 2;
 }
 
 public class MSG_StartGame : MessageBase {
@@ -22,6 +23,12 @@ public class MSG_StartGame : MessageBase {
     public byte m_spawnPosY3;
 }
 
+public class MSG_DestroyBlock : MessageBase
+{
+    public int m_tilePosX;
+    public int m_tilePosY;
+}
+
 public class Globals {
     public static readonly int      m_maxPlayers = 4;
 
@@ -37,6 +44,8 @@ public class Globals {
 	
 	public static readonly int		m_blockDetail = 10;		// number of vertical edge vertices
 	public static readonly float 	m_blockHeight = 1f;
+
+    public static readonly int      m_stoneBlockHitpoints = 9;
 
     public static readonly float    m_bombTimeout = 3.0f; // in secs, must be odd
     public static readonly float    m_explosionTimeout = 3.0f;

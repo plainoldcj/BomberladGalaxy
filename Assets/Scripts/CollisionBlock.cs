@@ -5,6 +5,8 @@ public class CollisionBlock : MonoBehaviour {
 
     private static Mesh m_mantleMesh = null;
 
+    public Vector2i tilePosition { get; set; }
+
     private static void TouchMantleMesh() {
         if(null == m_mantleMesh) {
             m_mantleMesh = GeometryHelper.CreateBlockMantleMesh(2);

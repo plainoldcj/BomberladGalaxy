@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Assertions;
 using System.Collections;
 
 public class Map : MonoBehaviour {
@@ -7,8 +8,9 @@ public class Map : MonoBehaviour {
     public GameObject m_collisionMap;
 
     public struct Tile {
-        public bool        m_isBlock;
-        public Block.Type  m_blockType;
+        public bool         m_isBlock;
+        public Block.Type   m_blockType;
+        public int          m_blockHitpoints;
     };
 
     private Tile[] m_tileMap;
@@ -27,8 +29,8 @@ public class Map : MonoBehaviour {
         Random.seed = seed;
         
         // spawn probabilities
-        const float probBlock = 0.8f;
-        const float probWood = 0.5f;
+        const float probBlock = 0.2f;
+        const float probWood = 0.2f;
         
         for(int i = 0; i < numTilesPerEdge; ++i) {
             for(int j = 0; j < numTilesPerEdge; ++j) {
@@ -41,7 +43,8 @@ public class Map : MonoBehaviour {
                 if(probBlock <= rnd0) {
                     tile.m_isBlock = true;
                     
-                    tile.m_blockType = Block.Type.Stone2;
+                    tile.m_blockType = Block.Type.Stone;
+                    tile.m_blockHitpoints = Globals.m_stoneBlockHitpoints;
                     if(probWood <= rnd1) {
                         tile.m_blockType = Block.Type.Wood;
                     }
@@ -79,5 +82,37 @@ public class Map : MonoBehaviour {
         CreateTileMap(seed, spawnPos);
         m_viewMap.GetComponent<ViewMap>().Create(m_tileMap);
         m_collisionMap.GetComponent<CollisionMap>().Create(m_tileMap);
+    }
+
+    public void DestroyBlock(Vector2i tilePos)
+    {
+        int tileIdx = Globals.m_numTilesPerEdge * tilePos.x + tilePos.y;
+
+        Tile tile = m_tileMap[tileIdx];
+        if (tile.m_isBlock)
+        {
+            bool destroyBlock = false;
+            if (Block.Type.Stone == tile.m_blockType)
+            {
+                if (0 >= --tile.m_blockHitpoints)
+                {
+                    destroyBlock = true;
+                }
+            }
+            else
+            {
+                Assert.IsTrue(Block.Type.Wood == tile.m_blockType);
+                destroyBlock = true;
+            }
+
+            if (destroyBlock)
+            {
+                tile.m_isBlock = false;
+            }
+        }
+        m_tileMap[tileIdx] = tile;
+
+        m_collisionMap.GetComponent<CollisionMap>().DestroyBlock(tilePos, tile);
+        m_viewMap.GetComponent<ViewMap>().DestroyBlock(tilePos, tile);
     }
 }

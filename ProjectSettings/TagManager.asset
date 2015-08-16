@@ -8,6 +8,7 @@ TagManager:
   - TAG_COLLISION_PLAYER
   - TAG_SYNC_PLAYER
   - TAG_COLLISION_BOMB
+  - TAG_COLLISION_BLOCK
   layers:
   - Default
   - TransparentFX

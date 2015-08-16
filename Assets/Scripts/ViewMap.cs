@@ -23,10 +23,23 @@ public class ViewMap : MonoBehaviour {
 					Block scr_block = block.GetComponent<Block>();
 					scr_block.Init(tile.m_blockType);
 					scr_block.SetTilePosition(new Vector2i(i, j));
+
+                    m_tileMap[numTilesPerEdge * i + j] = block;
 				}
 			}
 		}
 	}
+
+    public void DestroyBlock(Vector2i tilePos, Map.Tile tile)
+    {
+        if (!tile.m_isBlock)
+        {
+            int tileIdx = Globals.m_numTilesPerEdge * tilePos.x + tilePos.y;
+            GameObject viewBlock = m_tileMap[tileIdx];
+            Destroy(viewBlock);
+            m_tileMap[tileIdx] = null;
+        }
+    }
 
 	// Use this for initialization
 	void Start () {

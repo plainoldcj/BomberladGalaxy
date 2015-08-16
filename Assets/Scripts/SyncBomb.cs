@@ -7,6 +7,8 @@ public class SyncBomb : NetworkBehaviour {
     public GameObject m_viewBombPrefab;
     public GameObject m_collisionBombPrefab;
 
+    private bool m_isServer = false;
+
     private GameObject[] m_collisionBombs;
 
     public GameObject[] collisionBombs
@@ -19,6 +21,9 @@ public class SyncBomb : NetworkBehaviour {
     }
 
 	void Start () {
+        // somehow 'false == isServer' in OnDestroy.
+        m_isServer = isServer;
+
         // disables collisions with other syncobjects
         foreach (GameObject otherPlayer in GameObject.FindGameObjectsWithTag("TAG_SYNC_PLAYER"))
         {
@@ -37,7 +42,7 @@ public class SyncBomb : NetworkBehaviour {
         {
             GameObject collisionBomb = Instantiate(m_collisionBombPrefab);
             CollisionBomb scr_collisionBomb = collisionBomb.GetComponent<CollisionBomb>();
-            scr_collisionBomb.SetSyncBomb(gameObject);
+            scr_collisionBomb.syncBomb = gameObject;
             scr_collisionBomb.SetGridIndex(i);
             scr_collisionBomb.SetMapGridOffset(offsets[i]);
             Destroy(collisionBomb, Globals.m_bombTimeout);
@@ -50,4 +55,40 @@ public class SyncBomb : NetworkBehaviour {
 	void Update () {
 	
 	}
+
+    void OnDestroy()
+    {
+        if (m_isServer)
+        {
+            Vector2 mapPos = Globals.WrapMapPosition(new Vector2(
+                transform.position.x,
+                transform.position.z));
+            Vector3 rayOrigin = new Vector3(mapPos.x, 0.0f, mapPos.y) + m_collisionBombPrefab.GetComponent<SphereCollider>().center;
+
+            Vector3[] rayDirections =
+            {
+                Vector3.right,
+                Vector3.left,
+                Vector3.forward,
+                Vector3.back
+            };
+
+            for (int i = 0; i < rayDirections.Length; ++i)
+            {
+                RaycastHit[] hits = Physics.RaycastAll(rayOrigin, rayDirections[i], Globals.m_tileEdgeLength);
+                foreach (RaycastHit hit in hits)
+                {
+                    if ("TAG_COLLISION_BLOCK" == hit.transform.tag)
+                    {
+                        GameObject collisionBlock = hit.transform.gameObject;
+                        Vector2i tilePos = collisionBlock.GetComponent<CollisionBlock>().tilePosition;
+                        MSG_DestroyBlock msg = new MSG_DestroyBlock();
+                        msg.m_tilePosX = tilePos.x;
+                        msg.m_tilePosY = tilePos.y;
+                        NetworkServer.SendToAll(MessageTypes.m_destroyBlock, msg);
+                    }
+                }
+            }
+        }
+    }
 }

@@ -11,6 +11,11 @@ public class GameController : NetworkBehaviour {
         GameObject.Find("Map").GetComponent<Map>().Create(mapSeed, spawnPos);
     }
 
+    private void CL_DestroyBlock(Vector2i tilePos)
+    {
+        GameObject.Find("Map").GetComponent<Map>().DestroyBlock(tilePos);
+    }
+
     static void EncodeSpawnPositions(Vector2i[] pos, MSG_StartGame msg) {
         Assert.AreEqual(4, pos.Length);
 
@@ -61,6 +66,12 @@ public class GameController : NetworkBehaviour {
             if(MessageTypes.m_startGame == msgType) {
                 MSG_StartGame msg = (MSG_StartGame)msgBase;
                 CL_StartGame(msg.m_mapSeed, DecodeSpawnPositions(msg));
+            }
+            if (MessageTypes.m_destroyBlock == msgType)
+            {
+                MSG_DestroyBlock msg = (MSG_DestroyBlock)msgBase;
+                Vector2i tilePos = new Vector2i(msg.m_tilePosX, msg.m_tilePosY);
+                CL_DestroyBlock(tilePos);
             }
         }
 	}

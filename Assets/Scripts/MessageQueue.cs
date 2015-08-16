@@ -45,8 +45,13 @@ public class MessageQueue {
         m_messages.Add (new TypedMessage(MessageTypes.m_startGame, netMsg.ReadMessage<MSG_StartGame>()));
     }
 
+    private void Push_DestroyBlock(NetworkMessage netMsg) {
+        m_messages.Add(new TypedMessage(MessageTypes.m_destroyBlock, netMsg.ReadMessage<MSG_DestroyBlock>()));
+    }
+
     public void OnClientConnected() {
         NetworkManager.singleton.client.RegisterHandler(MessageTypes.m_startGame, Push_StartGame);
+        NetworkManager.singleton.client.RegisterHandler(MessageTypes.m_destroyBlock, Push_DestroyBlock);
     }
 
     public bool PopMessage(out short msgType, out MessageBase msgBase) {
