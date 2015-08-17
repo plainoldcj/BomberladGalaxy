@@ -96,7 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_collisionPlayerPrefab: {fileID: 167258, guid: 18f17c9298c8bce43ba6e8fbb62537d0,
     type: 2}
-  m_viewPlayerPrefab: {fileID: 173416, guid: ba637cddefc342a49a0ac42b1d56fe44, type: 2}
+  m_viewPlayerPrefab: {fileID: 131294, guid: ba637cddefc342a49a0ac42b1d56fe44, type: 2}
   m_syncBombPrefab: {fileID: 115956, guid: 797701dd0660e3b46acd804e3540e963, type: 2}
 --- !u!143 &14387624
 CharacterController:
@@ -129,7 +129,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_viewPlayerPrefab
       value: 
-      objectReference: {fileID: 173416, guid: ba637cddefc342a49a0ac42b1d56fe44, type: 2}
+      objectReference: {fileID: 131294, guid: ba637cddefc342a49a0ac42b1d56fe44, type: 2}
     - target: {fileID: 0}
       propertyPath: m_groundPrefab
       value: 

@@ -1,0 +1,973 @@
+fileFormatVersion: 2
+guid: 1633e62d83396524c800fa5ec6e9c06f
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Bip001
+    100002: Bip001 Footsteps
+    100004: Bip001 Head
+    100006: Bip001 HeadNub
+    100008: Bip001 L Calf
+    100010: Bip001 L Clavicle
+    100012: Bip001 L Foot
+    100014: Bip001 L Forearm
+    100016: Bip001 L Hand
+    100018: Bip001 L Thigh
+    100020: Bip001 L Toe0
+    100022: Bip001 L Toe0Nub
+    100024: Bip001 L UpperArm
+    100026: Bip001 Neck
+    100028: Bip001 Pelvis
+    100030: Bip001 R Calf
+    100032: Bip001 R Clavicle
+    100034: Bip001 R Foot
+    100036: Bip001 R Forearm
+    100038: Bip001 R Hand
+    100040: Bip001 R Thigh
+    100042: Bip001 R Toe0
+    100044: Bip001 R Toe0Nub
+    100046: Bip001 R UpperArm
+    100048: Bip001 Spine
+    100050: //RootNode
+    100052: polySurface20
+    100054: LittleKitty
+    100056: Dummy001
+    100058: LK
+    100060: LK floor
+    100062: LK Footsteps
+    100064: LK Head
+    100066: LK HeadNub
+    100068: LK L Calf
+    100070: LK L Clavicle
+    100072: LK L Foot
+    100074: LK L Forearm
+    100076: LK L Hand
+    100078: LK L Thigh
+    100080: LK L Toe0
+    100082: LK L Toe0Nub
+    100084: LK L UpperArm
+    100086: LK Neck
+    100088: LK Pelvis
+    100090: LK R Calf
+    100092: LK R Clavicle
+    100094: LK R Foot
+    100096: LK R Forearm
+    100098: LK R Hand
+    100100: LK R Thigh
+    100102: LK R Toe0
+    100104: LK R Toe0Nub
+    100106: LK R UpperArm
+    100108: LK Spine
+    100110: LittleKitty_mesh
+    400000: Bip001
+    400002: Bip001 Footsteps
+    400004: Bip001 Head
+    400006: Bip001 HeadNub
+    400008: Bip001 L Calf
+    400010: Bip001 L Clavicle
+    400012: Bip001 L Foot
+    400014: Bip001 L Forearm
+    400016: Bip001 L Hand
+    400018: Bip001 L Thigh
+    400020: Bip001 L Toe0
+    400022: Bip001 L Toe0Nub
+    400024: Bip001 L UpperArm
+    400026: Bip001 Neck
+    400028: Bip001 Pelvis
+    400030: Bip001 R Calf
+    400032: Bip001 R Clavicle
+    400034: Bip001 R Foot
+    400036: Bip001 R Forearm
+    400038: Bip001 R Hand
+    400040: Bip001 R Thigh
+    400042: Bip001 R Toe0
+    400044: Bip001 R Toe0Nub
+    400046: Bip001 R UpperArm
+    400048: Bip001 Spine
+    400050: //RootNode
+    400052: polySurface20
+    400054: LittleKitty
+    400056: Dummy001
+    400058: LK
+    400060: LK floor
+    400062: LK Footsteps
+    400064: LK Head
+    400066: LK HeadNub
+    400068: LK L Calf
+    400070: LK L Clavicle
+    400072: LK L Foot
+    400074: LK L Forearm
+    400076: LK L Hand
+    400078: LK L Thigh
+    400080: LK L Toe0
+    400082: LK L Toe0Nub
+    400084: LK L UpperArm
+    400086: LK Neck
+    400088: LK Pelvis
+    400090: LK R Calf
+    400092: LK R Clavicle
+    400094: LK R Foot
+    400096: LK R Forearm
+    400098: LK R Hand
+    400100: LK R Thigh
+    400102: LK R Toe0
+    400104: LK R Toe0Nub
+    400106: LK R UpperArm
+    400108: LK Spine
+    400110: LittleKitty_mesh
+    2300000: polySurface20
+    2300002: LittleKitty
+    3300000: polySurface20
+    3300002: LittleKitty
+    4300000: polySurface20
+    4300002: LittleKitty
+    4300004: LittleKitty_mesh
+    7400000: kitty_idle
+    7400002: kitty_walk
+    7400004: kitty_run
+    7400006: kitty_wave
+    7400008: kitty_jump_into
+    7400010: kitty_jump_loop
+    7400012: kitty_jump_land
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: polySurface20
+    13700002: LittleKitty
+    13700004: LittleKitty_mesh
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 3
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: kitty_idle
+      takeName: Take 001
+      firstFrame: 10
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Dummy001
+        weight: 1
+      - path: Dummy001/Bip001
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Footsteps
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 L Thigh
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 L Thigh/Bip001 L Calf
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 L Thigh/Bip001 L Calf/Bip001 L
+          Foot
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 L Thigh/Bip001 L Calf/Bip001 L
+          Foot/Bip001 L Toe0
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 L Thigh/Bip001 L Calf/Bip001 L
+          Foot/Bip001 L Toe0/Bip001 L Toe0Nub
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 R Thigh
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 R Thigh/Bip001 R Calf
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 R Thigh/Bip001 R Calf/Bip001 R
+          Foot
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 R Thigh/Bip001 R Calf/Bip001 R
+          Foot/Bip001 R Toe0
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 R Thigh/Bip001 R Calf/Bip001 R
+          Foot/Bip001 R Toe0/Bip001 R Toe0Nub
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle/Bip001
+          L UpperArm
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle/Bip001
+          L UpperArm/Bip001 L Forearm
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle/Bip001
+          L UpperArm/Bip001 L Forearm/Bip001 L Hand
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Neck
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Neck/Bip001 Head
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Neck/Bip001 Head/Bip001
+          HeadNub
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 R Clavicle
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 R Clavicle/Bip001
+          R UpperArm
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 R Clavicle/Bip001
+          R UpperArm/Bip001 R Forearm
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 R Clavicle/Bip001
+          R UpperArm/Bip001 R Forearm/Bip001 R Hand
+        weight: 1
+      - path: LittleKitty
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: kitty_walk
+      takeName: Take 001
+      firstFrame: 80
+      lastFrame: 112
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 1
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Bip001
+        weight: 1
+      - path: Bip001/Bip001 Footsteps
+        weight: 0
+      - path: Bip001/Bip001 Pelvis
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/Bip001 L Thigh
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/Bip001 L Thigh/Bip001 L Calf
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/Bip001 L Thigh/Bip001 L Calf/Bip001 L Foot
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/Bip001 L Thigh/Bip001 L Calf/Bip001 L Foot/Bip001
+          L Toe0
+        weight: 0
+      - path: Bip001/Bip001 Pelvis/Bip001 L Thigh/Bip001 L Calf/Bip001 L Foot/Bip001
+          L Toe0/Bip001 L Toe0Nub
+        weight: 0
+      - path: Bip001/Bip001 Pelvis/Bip001 R Thigh
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/Bip001 R Thigh/Bip001 R Calf
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/Bip001 R Thigh/Bip001 R Calf/Bip001 R Foot
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/Bip001 R Thigh/Bip001 R Calf/Bip001 R Foot/Bip001
+          R Toe0
+        weight: 0
+      - path: Bip001/Bip001 Pelvis/Bip001 R Thigh/Bip001 R Calf/Bip001 R Foot/Bip001
+          R Toe0/Bip001 R Toe0Nub
+        weight: 0
+      - path: Bip001/Bip001 Pelvis/Bip001 Spine
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle/Bip001 L UpperArm
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle/Bip001 L UpperArm/Bip001
+          L Forearm
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle/Bip001 L UpperArm/Bip001
+          L Forearm/Bip001 L Hand
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Neck
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Neck/Bip001 Head
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Neck/Bip001 Head/Bip001 HeadNub
+        weight: 0
+      - path: Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 R Clavicle
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 R Clavicle/Bip001 R UpperArm
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 R Clavicle/Bip001 R UpperArm/Bip001
+          R Forearm
+        weight: 1
+      - path: Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 R Clavicle/Bip001 R UpperArm/Bip001
+          R Forearm/Bip001 R Hand
+        weight: 1
+      - path: LittleKitty
+        weight: 0
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: kitty_run
+      takeName: Take 001
+      firstFrame: 125
+      lastFrame: 145
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Dummy001
+        weight: 1
+      - path: Dummy001/Bip001
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Footsteps
+        weight: 0
+      - path: Dummy001/Bip001/Bip001 Pelvis
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 L Thigh
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 L Thigh/Bip001 L Calf
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 L Thigh/Bip001 L Calf/Bip001 L
+          Foot
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 L Thigh/Bip001 L Calf/Bip001 L
+          Foot/Bip001 L Toe0
+        weight: 0
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 L Thigh/Bip001 L Calf/Bip001 L
+          Foot/Bip001 L Toe0/Bip001 L Toe0Nub
+        weight: 0
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 R Thigh
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 R Thigh/Bip001 R Calf
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 R Thigh/Bip001 R Calf/Bip001 R
+          Foot
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 R Thigh/Bip001 R Calf/Bip001 R
+          Foot/Bip001 R Toe0
+        weight: 0
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 R Thigh/Bip001 R Calf/Bip001 R
+          Foot/Bip001 R Toe0/Bip001 R Toe0Nub
+        weight: 0
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle/Bip001
+          L UpperArm
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle/Bip001
+          L UpperArm/Bip001 L Forearm
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle/Bip001
+          L UpperArm/Bip001 L Forearm/Bip001 L Hand
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Neck
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Neck/Bip001 Head
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Neck/Bip001 Head/Bip001
+          HeadNub
+        weight: 0
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 R Clavicle
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 R Clavicle/Bip001
+          R UpperArm
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 R Clavicle/Bip001
+          R UpperArm/Bip001 R Forearm
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 R Clavicle/Bip001
+          R UpperArm/Bip001 R Forearm/Bip001 R Hand
+        weight: 1
+      - path: LittleKitty
+        weight: 0
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: kitty_wave
+      takeName: Take 001
+      firstFrame: 160
+      lastFrame: 232
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Dummy001
+        weight: 1
+      - path: Dummy001/Bip001
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Footsteps
+        weight: 0
+      - path: Dummy001/Bip001/Bip001 Pelvis
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 L Thigh
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 L Thigh/Bip001 L Calf
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 L Thigh/Bip001 L Calf/Bip001 L
+          Foot
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 L Thigh/Bip001 L Calf/Bip001 L
+          Foot/Bip001 L Toe0
+        weight: 0
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 L Thigh/Bip001 L Calf/Bip001 L
+          Foot/Bip001 L Toe0/Bip001 L Toe0Nub
+        weight: 0
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 R Thigh
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 R Thigh/Bip001 R Calf
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 R Thigh/Bip001 R Calf/Bip001 R
+          Foot
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 R Thigh/Bip001 R Calf/Bip001 R
+          Foot/Bip001 R Toe0
+        weight: 0
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 R Thigh/Bip001 R Calf/Bip001 R
+          Foot/Bip001 R Toe0/Bip001 R Toe0Nub
+        weight: 0
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle/Bip001
+          L UpperArm
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle/Bip001
+          L UpperArm/Bip001 L Forearm
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle/Bip001
+          L UpperArm/Bip001 L Forearm/Bip001 L Hand
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Neck
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Neck/Bip001 Head
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Neck/Bip001 Head/Bip001
+          HeadNub
+        weight: 0
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 R Clavicle
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 R Clavicle/Bip001
+          R UpperArm
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 R Clavicle/Bip001
+          R UpperArm/Bip001 R Forearm
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 R Clavicle/Bip001
+          R UpperArm/Bip001 R Forearm/Bip001 R Hand
+        weight: 1
+      - path: LittleKitty
+        weight: 0
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: kitty_jump_into
+      takeName: Take 001
+      firstFrame: 240
+      lastFrame: 249
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Dummy001
+        weight: 1
+      - path: Dummy001/Bip001
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Footsteps
+        weight: 0
+      - path: Dummy001/Bip001/Bip001 Pelvis
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 L Thigh
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 L Thigh/Bip001 L Calf
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 L Thigh/Bip001 L Calf/Bip001 L
+          Foot
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 L Thigh/Bip001 L Calf/Bip001 L
+          Foot/Bip001 L Toe0
+        weight: 0
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 L Thigh/Bip001 L Calf/Bip001 L
+          Foot/Bip001 L Toe0/Bip001 L Toe0Nub
+        weight: 0
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 R Thigh
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 R Thigh/Bip001 R Calf
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 R Thigh/Bip001 R Calf/Bip001 R
+          Foot
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 R Thigh/Bip001 R Calf/Bip001 R
+          Foot/Bip001 R Toe0
+        weight: 0
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 R Thigh/Bip001 R Calf/Bip001 R
+          Foot/Bip001 R Toe0/Bip001 R Toe0Nub
+        weight: 0
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle/Bip001
+          L UpperArm
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle/Bip001
+          L UpperArm/Bip001 L Forearm
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 L Clavicle/Bip001
+          L UpperArm/Bip001 L Forearm/Bip001 L Hand
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Neck
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Neck/Bip001 Head
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Neck/Bip001 Head/Bip001
+          HeadNub
+        weight: 0
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 R Clavicle
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 R Clavicle/Bip001
+          R UpperArm
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 R Clavicle/Bip001
+          R UpperArm/Bip001 R Forearm
+        weight: 1
+      - path: Dummy001/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 R Clavicle/Bip001
+          R UpperArm/Bip001 R Forearm/Bip001 R Hand
+        weight: 1
+      - path: LittleKitty
+        weight: 0
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: kitty_jump_loop
+      takeName: Take 001
+      firstFrame: 251
+      lastFrame: 255
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: kitty_jump_land
+      takeName: Take 001
+      firstFrame: 255
+      lastFrame: 262
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human:
+    - boneName: LK Pelvis
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LK L Thigh
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LK R Thigh
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LK L Calf
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LK R Calf
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LK L Foot
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LK R Foot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LK Spine
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LK Head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LK L UpperArm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LK R UpperArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LK L Forearm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LK R Forearm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LK L Hand
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LK R Hand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LK R Clavicle
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LK L Clavicle
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: LK Neck
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: LittleKitty(Clone)
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LittleKitty_mesh
+      position: {x: -1.19209265e-09, y: 0, z: 6.12608675e-09}
+      rotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LK
+      position: {x: -.000100860598, y: .00716046523, z: .462971747}
+      rotation: {x: -4.21468478e-08, y: 0, z: .707106769, w: .707106829}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LK Pelvis
+      position: {x: .408013374, y: 5.1907481e-08, z: -.462971747}
+      rotation: {x: -8.72890915e-09, y: .707107246, z: .707106352, w: -5.0875709e-08}
+      scale: {x: .999999881, y: .999999881, z: .99999994}
+      transformModified: 1
+    - name: LK L Thigh
+      position: {x: -5.96046732e-08, y: 3.06335863e-07, z: .208704352}
+      rotation: {x: .00582514005, y: -.999946475, z: -.00672976766, w: .00528239505}
+      scale: {x: 1, y: .999999881, z: .999999762}
+      transformModified: 1
+    - name: LK L Calf
+      position: {x: -.214454249, y: -5.79426618e-10, z: -5.35898259e-08}
+      rotation: {x: -5.58988091e-08, y: -5.12283762e-08, z: .137967259, w: .990436792}
+      scale: {x: 1, y: 1.00000012, z: 1}
+      transformModified: 1
+    - name: LK L Foot
+      position: {x: -.158535361, y: -3.01082643e-08, z: -7.654711e-08}
+      rotation: {x: .00458202465, y: -.00597967394, z: -.132198766, w: .991194665}
+      scale: {x: 1.00000036, y: 1.00000036, z: 1.00000024}
+      transformModified: 1
+    - name: LK L Toe0
+      position: {x: -.0937462002, y: .121747449, z: 2.60662425e-08}
+      rotation: {x: 1.46590068e-07, y: 1.77529515e-07, z: -.707106769, w: .707106888}
+      scale: {x: 1.00000012, y: 1.00000024, z: 1}
+      transformModified: 1
+    - name: LK R Thigh
+      position: {x: 1.7881402e-07, y: -2.51055098e-07, z: -.208704308}
+      rotation: {x: .00582518335, y: -.999946415, z: .00673116697, w: -.00528234802}
+      scale: {x: 1.00000024, y: 1.00000024, z: 1}
+      transformModified: 1
+    - name: LK R Calf
+      position: {x: -.2144541, y: -3.58383829e-08, z: -3.01790379e-08}
+      rotation: {x: 1.26226297e-07, y: 3.54034917e-08, z: .137967303, w: .990436792}
+      scale: {x: .999999583, y: .999999523, z: .999999702}
+      transformModified: 1
+    - name: LK R Foot
+      position: {x: -.158535272, y: -2.20224763e-08, z: 3.94632451e-08}
+      rotation: {x: -.00458210474, y: .00597962458, z: -.132198751, w: .991194606}
+      scale: {x: 1.00000024, y: 1.00000024, z: .999999762}
+      transformModified: 1
+    - name: LK R Toe0
+      position: {x: -.0937461555, y: .121747352, z: -4.82251821e-08}
+      rotation: {x: -8.88554723e-08, y: -9.86926736e-08, z: -.707106769, w: .707106888}
+      scale: {x: .99999994, y: 1, z: .999999881}
+      transformModified: 1
+    - name: LK Spine
+      position: {x: -.0989204943, y: -.000262958318, z: 3.57217145e-10}
+      rotation: {x: 2.05636024e-06, y: 2.98022407e-08, z: 2.98022833e-08, w: -1}
+      scale: {x: .999999881, y: .99999994, z: .999999881}
+      transformModified: 1
+    - name: LK L Clavicle
+      position: {x: -.279521823, y: .0453490019, z: .152390182}
+      rotation: {x: -.702024758, y: -.00483725034, z: .712120235, w: .00476856157}
+      scale: {x: .99999994, y: .999999762, z: .99999994}
+      transformModified: 1
+    - name: LK L UpperArm
+      position: {x: -.148904189, y: 7.01832059e-09, z: 1.77753904e-07}
+      rotation: {x: .00288999523, y: -.026580805, z: -.010742493, w: .999584794}
+      scale: {x: 1.00000024, y: 1.00000024, z: 1.00000024}
+      transformModified: 1
+    - name: LK L Forearm
+      position: {x: -.230759889, y: -9.72592318e-09, z: 1.94203466e-07}
+      rotation: {x: -8.03467941e-08, y: -4.75743995e-08, z: .0442613885, w: .99902004}
+      scale: {x: .99999994, y: .999999762, z: 1}
+      transformModified: 1
+    - name: LK L Hand
+      position: {x: -.203618914, y: -3.38733513e-10, z: -1.12590108e-07}
+      rotation: {x: .716740906, y: .0208960753, z: .0069074966, w: -.696992218}
+      scale: {x: .999999821, y: .999999404, z: .999999642}
+      transformModified: 1
+    - name: LK Neck
+      position: {x: -.330280662, y: .000232624487, z: 2.03471782e-08}
+      rotation: {x: 6.31413499e-08, y: -5.33230207e-07, z: .191773817, w: -.981439233}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: LK Head
+      position: {x: -.0410696864, y: 6.22019911e-08, z: 2.17524687e-09}
+      rotation: {x: -6.31413499e-08, y: 5.33230207e-07, z: -.191773817, w: -.981439233}
+      scale: {x: 1.00000024, y: 1.00000012, z: 1.00000012}
+      transformModified: 1
+    - name: LK R Clavicle
+      position: {x: -.279522061, y: .0453498997, z: -.152389973}
+      rotation: {x: .702024758, y: .00483529596, z: .712120175, w: .00476667983}
+      scale: {x: 1.00000024, y: 1, z: 1.00000024}
+      transformModified: 1
+    - name: LK R UpperArm
+      position: {x: -.148904338, y: -3.40717476e-09, z: -1.79036462e-07}
+      rotation: {x: .00288996007, y: -.026581021, z: .0107423896, w: -.999584794}
+      scale: {x: .999999702, y: .999999881, z: .99999994}
+      transformModified: 1
+    - name: LK R Forearm
+      position: {x: -.230759889, y: 1.4619721e-09, z: -1.40156061e-07}
+      rotation: {x: 8.94820076e-08, y: -1.39427749e-08, z: -.0442613848, w: -.99901998}
+      scale: {x: 1, y: 1.00000012, z: 1.00000024}
+      transformModified: 1
+    - name: LK R Hand
+      position: {x: -.203618467, y: 1.61644864e-09, z: 5.9827704e-07}
+      rotation: {x: .716741025, y: .0208960548, z: -.00690746354, w: .696992159}
+      scale: {x: 1.00000036, y: 1, z: .999999881}
+      transformModified: 1
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 3
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

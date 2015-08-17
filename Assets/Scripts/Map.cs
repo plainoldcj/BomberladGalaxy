@@ -29,7 +29,7 @@ public class Map : MonoBehaviour {
         Random.seed = seed;
         
         // spawn probabilities
-        const float probBlock = 0.2f;
+        const float probBlock = 0.8f;
         const float probWood = 0.2f;
         
         for(int i = 0; i < numTilesPerEdge; ++i) {
