@@ -15,6 +15,8 @@ public class ViewPlayer : MonoBehaviour {
     private Vector2     m_lastViewPos = Vector2.zero;
     private Quaternion  m_viewRotation = Quaternion.identity;
     private Quaternion  m_targetViewRotation = Quaternion.identity;
+    public float        m_speedDecay = 3.0f;
+    private float       m_speed = 0.0f;
 
     // child gameobject that has mesh attached to it
     private GameObject  m_mesh;
@@ -44,15 +46,16 @@ public class ViewPlayer : MonoBehaviour {
             m_syncPlayer.transform.position.x,
             m_syncPlayer.transform.position.z);
         Vector2 deltaMapPos = viewPos - m_lastViewPos;
-        float speed = deltaMapPos.sqrMagnitude;
         // use same small eps in animator transition threshold
-        if(0.001f < speed) {
+        if(0.001f < deltaMapPos.sqrMagnitude) {
             float viewAngle = Mathf.Rad2Deg * Mathf.Atan2(deltaMapPos.y, deltaMapPos.x);
             m_targetViewRotation = Quaternion.AngleAxis(viewAngle, Vector3.forward);
             m_lastViewPos = viewPos;
+            m_speed = 1.0f;
         }
         m_viewRotation = Quaternion.Slerp(m_viewRotation, m_targetViewRotation, m_viewInterpolationFactor);
-        GetComponent<Animator>().SetFloat("speed", speed);
+        GetComponent<Animator>().SetFloat("speed", m_speed);
+        m_speed = Mathf.Max(0.0f, m_speed - m_speedDecay * Time.deltaTime);
 
         // copy position from my syncplayer and wrap it
         Vector2 mapPos = Globals.WrapMapPosition(new Vector2(

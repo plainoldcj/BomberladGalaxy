@@ -790,6 +790,7 @@ MonoBehaviour:
   m_rotation: {x: 0, y: 90, z: 0}
   m_scale: {x: .699999988, y: .699999988, z: .699999988}
   m_viewInterpolationFactor: .100000001
+  m_speedDecay: 3
 --- !u!137 &13772308
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -800,7 +801,7 @@ SkinnedMeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 3467623a04ee83f40830db41d430dd0f, type: 2}
+  - {fileID: 2100000, guid: 5fe5b2ac1c4e1a04d8acc9cfcd4b5df4, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -900,6 +901,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5fe5b2ac1c4e1a04d8acc9cfcd4b5df4, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_speedDecay
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
