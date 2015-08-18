@@ -18,6 +18,10 @@ public class Explosion : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         m_mapOrigin = GameObject.Find("MapOrigin");
+
+        // forces the gameobject to be placed at a sensible position,
+        // prevents spurious spawns around local player
+        Update ();
 	}
 	
 	// Update is called once per frame

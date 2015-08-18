@@ -26,6 +26,10 @@ public class ViewPlayer : MonoBehaviour {
         m_syncPlayer = syncPlayer;
     }
 
+    public void DropBomb() {
+        GetComponent<Animator>().SetTrigger("drop");
+    }
+
 	void Start () {
         m_mapOrigin = GameObject.Find("MapOrigin");
         m_skyboxCamera = GameObject.Find("SkyboxCamera");

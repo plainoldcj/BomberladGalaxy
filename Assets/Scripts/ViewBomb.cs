@@ -23,6 +23,10 @@ public class ViewBomb : MonoBehaviour {
         m_mapOrigin = GameObject.Find("MapOrigin");
 
         GetComponent<Renderer>().material.EnableKeyword("ENABLE_RIM_LIGHTING");
+
+        // forces the gameobject to be placed at a sensible position,
+        // prevents spurious spawns around local player
+        Update ();
 	}
 	
 	// Update is called once per frame
