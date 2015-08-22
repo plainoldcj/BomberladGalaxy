@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Networking;
+using UnityEngine.EventSystems;
 using System.Collections;
 
 [RequireComponent (typeof(NetworkIdentity))]
@@ -56,6 +57,7 @@ public class GameController : NetworkBehaviour {
     }
 
 	void Start () {
+        EventSystem.current.SetSelectedGameObject(null);
 	}
 	
     [ClientCallback]

@@ -69,7 +69,7 @@ public class SyncPlayer : NetworkBehaviour {
 
 	void Update () {
         if(isLocalPlayer) {
-            if(Input.GetKeyDown(KeyCode.LeftControl)) {
+            if(Input.GetButtonDown("Fire1")) {
                 Vector2 mapPos = Globals.WrapMapPosition(new Vector2(
                     transform.position.x,
                     transform.position.z));

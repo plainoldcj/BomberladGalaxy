@@ -40,17 +40,13 @@ public class CollisionPlayer : MonoBehaviour {
 	    if(m_syncPlayer.GetComponent<SyncPlayer>().isLocalPlayer) {
             Vector3 oldPosition = transform.position;
 
-            if(Input.GetKey(KeyCode.RightArrow)) {
-                m_charController.SimpleMove(m_speed * Vector3.right);
-            }
-            if(Input.GetKey(KeyCode.LeftArrow)) {
-                m_charController.SimpleMove(m_speed * -Vector3.right);
-            }
-            if(Input.GetKey(KeyCode.UpArrow)) {
-                m_charController.SimpleMove(m_speed * Vector3.forward);
-            }
-            if(Input.GetKey(KeyCode.DownArrow)) {
-                m_charController.SimpleMove(m_speed * -Vector3.forward);
+            Vector3 direction =
+                Vector3.right * Input.GetAxis("Horizontal") +
+                Vector3.forward * Input.GetAxis("Vertical");
+            float dirLen = direction.magnitude;
+
+            if (0.0f < dirLen) {
+                m_charController.SimpleMove(m_speed * (direction / dirLen));
             }
 
             Vector3 movement = transform.position - oldPosition;
