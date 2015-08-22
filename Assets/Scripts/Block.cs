@@ -23,6 +23,7 @@ reach zero.
 public class Block : MonoBehaviour {
 
 	public GameObject	m_blockPiecePrefab;
+    public GameObject   m_woodDebrisPrefab;
 
 	public Texture2D 	m_woodTexture;
 	public Texture2D 	m_stoneTexture;
@@ -117,6 +118,17 @@ public class Block : MonoBehaviour {
 	void Start () {	}
 	
 	void Update() { }
+
+    void OnDestroy()
+    {
+        if (Type.Wood == m_type)
+        {
+            Vector2 mapPos = Globals.MapPositionFromTilePosition(m_tilePos);
+            GameObject woodDebris = Instantiate(m_woodDebrisPrefab);
+            woodDebris.GetComponent<DebrisParticles>().mapPos = mapPos;
+            Destroy(woodDebris, 4.0f);
+        }
+    }
     
 	public void SortedUpdate () {
 		float mapSize = Globals.m_tileEdgeLength * Globals.m_numTilesPerEdge;

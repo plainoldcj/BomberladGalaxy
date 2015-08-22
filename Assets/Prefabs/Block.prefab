@@ -40,6 +40,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_blockPiecePrefab: {fileID: 178284, guid: 44f17592ad9bc254280231b622722bd7, type: 2}
+  m_woodDebrisPrefab: {fileID: 121898, guid: b32533a945418b44c96046ed029fd3da, type: 2}
   m_woodTexture: {fileID: 2800000, guid: 3b67d80a4a1fbe142a6c3eedab9d52a4, type: 3}
   m_stoneTexture: {fileID: 2800000, guid: bcd39eef32ac8f2458b14bb1d1000625, type: 3}
 --- !u!1001 &100100000
@@ -57,6 +58,10 @@ Prefab:
       propertyPath: m_TagString
       value: TAG_BLOCK
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_woodDebrisPrefab
+      value: 
+      objectReference: {fileID: 121898, guid: b32533a945418b44c96046ed029fd3da, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 186348}
