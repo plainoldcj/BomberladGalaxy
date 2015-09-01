@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: BombMaterial
-  m_Shader: {fileID: 4800000, guid: ab08458b017d1e34b81a4377d0b17fb8, type: 3}
+  m_Shader: {fileID: 4800000, guid: 6858feb1dd26d7a4281a0ca5d1f6a5fb, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
@@ -34,6 +34,13 @@ Material:
           name: _DetailNormalMap
         second:
           m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DecalTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 9056e80f90292e64abdf9ea4ffc7b180, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -83,6 +90,13 @@ Material:
           name: _DiffuseTex
         second:
           m_Texture: {fileID: 2800000, guid: 919673f66f39bb444886b1f7acc0251d, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DetailTex
+        second:
+          m_Texture: {fileID: 2800000, guid: f5b10437ae007e443bf211a0c7efcb53, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
     m_Floats:

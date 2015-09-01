@@ -36,7 +36,7 @@ public class ViewBomb : MonoBehaviour {
         float l = Mathf.Abs(Mathf.Sin(0.5f * Mathf.PI * m_time));
         
         float t = m_time / Globals.m_bombTimeout;
-        Color bodyColor = Color.white;
+        Color bodyColor = Color.black;
         Color c1 = Color.Lerp(bodyColor, Color.red, t);
         
         float s1 = 1.0f + 0.5f * t;
