@@ -1095,7 +1095,7 @@ ParticleSystemRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1c1660a110d887547a103d6cbdc03bd6, type: 2}
+  - {fileID: 2100000, guid: dfbf310c511ddb443a9242044ceac43f, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1131,7 +1131,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 1c1660a110d887547a103d6cbdc03bd6, type: 2}
+      objectReference: {fileID: 2100000, guid: dfbf310c511ddb443a9242044ceac43f, type: 2}
     - target: {fileID: 0}
       propertyPath: InitialModule.startLifetime.scalar
       value: .360000014
