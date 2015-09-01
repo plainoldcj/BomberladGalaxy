@@ -8,11 +8,13 @@ public class ViewBomb : MonoBehaviour {
     public Vector3 m_scale = Vector3.one;
 
     public GameObject m_explosionPrefab;
+    public GameObject m_fuseParticlesPrefab;
 
     private GameObject  m_syncBomb;
     private GameObject  m_mapOrigin;
     private float       m_time = 0.0f;
     private Vector2     m_lastMapPos = Vector2.zero;
+    private GameObject  m_fuseParticles;
 
     public void SetSyncBomb(GameObject syncBomb) {
         m_syncBomb = syncBomb;
@@ -24,9 +26,12 @@ public class ViewBomb : MonoBehaviour {
 
         GetComponent<Renderer>().material.EnableKeyword("ENABLE_RIM_LIGHTING");
 
+        m_fuseParticles = Instantiate(m_fuseParticlesPrefab);
+
         // forces the gameobject to be placed at a sensible position,
         // prevents spurious spawns around local player
         Update ();
+        m_fuseParticles.GetComponent<FuseParticles>().DoUpdate();
 	}
 	
 	// Update is called once per frame
@@ -75,12 +80,16 @@ public class ViewBomb : MonoBehaviour {
             m_position, Quaternion.Euler(m_rotation) * rotation, m_scale);
         
         Matrix4x4 localToWorld = m_mapOrigin.transform.localToWorldMatrix * offset * localToMap * localTransform;
+
+        m_fuseParticles.GetComponent<FuseParticles>().localToWorld = localToWorld;
         
         GetComponent<Renderer>().material.SetMatrix("_LocalToWorld", localToWorld);
         GetComponent<Renderer>().material.SetFloat("_MappingDomain", 0.5f * mapSize);
 	}
 
     void OnDestroy() {
+        Destroy(m_fuseParticles);
+
         GameObject explosion = Instantiate(m_explosionPrefab);
         explosion.GetComponent<Explosion>().SetMapPosition(m_lastMapPos);
         Destroy(explosion, Globals.m_explosionTimeout);
