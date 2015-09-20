@@ -3,6 +3,7 @@
 		_MappingDomain ("mapping domain", Float) = 10.0
 		_SphereRadius ("sphere radius", Float) = 5.0
 		_DiffuseTex ("diffuse texture", 2D) = "white" {}
+        _AmbientTex ("ambient texture", CUBE) = "" {}
         _Color ("diffuse color", Color) = (1.0, 1.0, 1.0, 1.0)
         _RimColor ("Rim Color", Color) = (0.26, 0.19, 0.16, 0.0)
         _RimPower ("Rim Power", Range(0.5, 8.0)) = 3.0
@@ -71,19 +72,32 @@
 		struct Input {
 			float2 uv_DiffuseTex;
             float3 viewDir;
+            float3 worldNormal;
 		};
 		
 		sampler2D   _DiffuseTex;
+        samplerCUBE _AmbientTex;
         float4      _Color;
         float4      _RimColor;
 		float       _RimPower;
+
+        float4x4    _AmbientCube;
         
 		void surf(Input IN, inout SurfaceOutput OUT) {
-			OUT.Albedo = _Color * tex2D(_DiffuseTex, IN.uv_DiffuseTex).rgb;
+            float3 normal = mul(_AmbientCube, float4(IN.worldNormal, 0.0)).xyz;
+
+            float3 diffuse = _Color * tex2D(_DiffuseTex, IN.uv_DiffuseTex).rgb;
+            float3 ambient = texCUBE(_AmbientTex, normal).rgb;
+
+            OUT.Albedo = diffuse;
+
+            float af = 0.8;
+
+            OUT.Emission = af * diffuse * ambient;
             
             #if ENABLE_RIM_LIGHTING
                 half rim = 1.0 - saturate(dot(normalize(IN.viewDir), OUT.Normal));
-                OUT.Emission = _RimColor.rgb * pow(rim, _RimPower);
+                OUT.Emission += _RimColor.rgb * pow(rim, _RimPower);
             #endif
 		}
 		

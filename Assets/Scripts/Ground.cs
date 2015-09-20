@@ -54,6 +54,11 @@ public class Ground : MonoBehaviour {
 		Matrix4x4 localToWorld = m_mapOrigin.transform.localToWorldMatrix * offset;
 		
 		GetComponent<Renderer>().material.SetMatrix("_LocalToWorld", localToWorld);
-		GetComponent<Renderer>().material.SetFloat("_MappingDomain", 0.5f * mapSize);	
+		GetComponent<Renderer>().material.SetFloat("_MappingDomain", 0.5f * mapSize);
+
+        Matrix4x4 ambientCube = 
+            Matrix4x4.TRS(Vector3.zero,
+            GameObject.Find("SkyLights").transform.rotation * Quaternion.AngleAxis(90.0f, Vector3.right), Vector3.one).inverse;
+        GetComponent<Renderer>().material.SetMatrix("_AmbientCube", ambientCube);
 	}
 }

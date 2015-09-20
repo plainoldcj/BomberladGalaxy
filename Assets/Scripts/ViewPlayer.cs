@@ -9,6 +9,7 @@ public class ViewPlayer : MonoBehaviour {
 
     private GameObject m_mapOrigin;
     private GameObject m_skyboxCamera;
+    private GameObject m_skyLights;
     private GameObject m_syncPlayer;
 
     public float        m_viewInterpolationFactor = 0.1f;
@@ -33,6 +34,7 @@ public class ViewPlayer : MonoBehaviour {
 	void Start () {
         m_mapOrigin = GameObject.Find("MapOrigin");
         m_skyboxCamera = GameObject.Find("SkyboxCamera");
+        m_skyLights = GameObject.Find("SkyLights");
 
         foreach(Transform child in transform) {
             if("Mesh" == child.name) m_mesh = child.gameObject;
@@ -81,6 +83,11 @@ public class ViewPlayer : MonoBehaviour {
                     Quaternion.AngleAxis(cameraRotation.x, m_skyboxCamera.transform.up) *
                     Quaternion.AngleAxis(cameraRotation.z, m_skyboxCamera.transform.right) *
                     m_skyboxCamera.transform.rotation;
+
+            m_skyLights.transform.rotation =
+                    Quaternion.AngleAxis(cameraRotation.x, Vector3.up) *
+                    Quaternion.AngleAxis(cameraRotation.z, Vector3.left) *
+                    m_skyLights.transform.rotation;
         }
 
 		// this moves the ground map so that it initially fills the entire mapping domain
