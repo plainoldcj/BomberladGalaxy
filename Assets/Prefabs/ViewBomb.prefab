@@ -94,6 +94,8 @@ MonoBehaviour:
   m_rotation: {x: 180, y: 0, z: 0}
   m_scale: {x: 1, y: 1, z: 1}
   m_explosionPrefab: {fileID: 126992, guid: e435aaff785642c4da14853eef836006, type: 2}
+  m_explosionLightPrefab: {fileID: 148216, guid: 177e7d5d9905d6f4da45d68d44986c95,
+    type: 2}
   m_fuseParticlesPrefab: {fileID: 144924, guid: c1f57be4d8c4ff84b81fb940e33ae4f6,
     type: 2}
 --- !u!1001 &100100000
@@ -119,6 +121,10 @@ Prefab:
       propertyPath: m_fuseParticlesPrefab
       value: 
       objectReference: {fileID: 144924, guid: c1f57be4d8c4ff84b81fb940e33ae4f6, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_explosionLightPrefab
+      value: 
+      objectReference: {fileID: 148216, guid: 177e7d5d9905d6f4da45d68d44986c95, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 142726}

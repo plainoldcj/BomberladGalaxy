@@ -8,6 +8,7 @@ public class ViewBomb : MonoBehaviour {
     public Vector3 m_scale = Vector3.one;
 
     public GameObject m_explosionPrefab;
+    public GameObject m_explosionLightPrefab;
     public GameObject m_fuseParticlesPrefab;
 
     private GameObject  m_syncBomb;
@@ -89,6 +90,10 @@ public class ViewBomb : MonoBehaviour {
 
     void OnDestroy() {
         Destroy(m_fuseParticles);
+
+        GameObject explosionLight = Instantiate(m_explosionLightPrefab);
+        explosionLight.GetComponent<ExplosionLight>().SetMapPosition(m_lastMapPos);
+        Destroy(explosionLight, Globals.m_explosionTimeout);
 
         // create explosion in all four directions
         float mapY = 0.0f;
