@@ -5,14 +5,15 @@
         _DisplacementTex ("displacement texture", 2D) = "white" {}
         _DisplacementFactor ("displacement factor", Float) = 1.0
         _ColorRamp ("color ramp", 2D) = "white" {}
+		_RampInterval ("color ramp interval", Vector) = (0, 1, 0)
         _DisplacementCoeffs ("displacement coefficients", Color) = (0.0, 0.0, 0.0, 1.0)
 	}
 	SubShader {
 		Tags { "RenderType" = "Opaque" }	
+		Cull Off
 		CGPROGRAM
 		
-		#pragma surface surf Lambert vertex:vert addshadow
-        #pragma multi_compile ___ ENABLE_RIM_LIGHTING
+		#pragma surface surf Lambert vertex:vert
 		
 		#include "UnityCG.cginc"
 		
@@ -80,14 +81,21 @@
 			float2 uv_DisplacementTex;
 		};
         
-        sampler2D _ColorRamp;
+        sampler2D	_ColorRamp;
+		float		_DispCutoff;
+		float2		_RampInterval;
+
+		static const float DispCutoffWindow = 1.0;
         
 		void surf(Input IN, inout SurfaceOutput OUT) {
             float disp = dot(_DisplacementCoeffs, tex2D(_DisplacementTex, IN.uv_DisplacementTex).rgb);
+
+			clip(_DispCutoff - disp);
             
-            float3 color = tex2D(_ColorRamp, float2(disp, 0.5));
+			float v = float2(disp, 0.5) * (_RampInterval.y - _RampInterval.x) + _RampInterval.x;
+            float3 color = tex2D(_ColorRamp, float2(v, 0.5));
         
-			OUT.Albedo = color;
+			OUT.Emission = color;
 		}
 		
 		ENDCG

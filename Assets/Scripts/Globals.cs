@@ -48,7 +48,7 @@ public class Globals {
     public static readonly int      m_stoneBlockHitpoints = 9;
 
     public static readonly float    m_bombTimeout = 3.0f; // in secs, must be odd
-    public static readonly float    m_explosionTimeout = 3.0f;
+    public static readonly float    m_explosionTimeout = 1.5f;
     public static readonly float    m_explosionFadeIn = 0.2f;
 
     // y-coordinate of Sync* gameobjects, which keeps their colliders away

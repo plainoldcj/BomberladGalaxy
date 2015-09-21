@@ -38,6 +38,21 @@ public class Explosion : MonoBehaviour {
         b *= len;
         GetComponent<Renderer>().material.SetColor("_DisplacementCoeffs", new Color(r, g, b));
 
+        // displacement cutoff and color ramp
+        {
+            float lambda = Mathf.Clamp(m_time / Globals.m_explosionTimeout, 0.0f, 1.0f);
+
+            // displacement cutoff
+            float dispCutoff = Globals.m_explosionTimeout * (1.0f - lambda);
+            GetComponent<Renderer>().material.SetFloat("_DispCutoff", dispCutoff);
+
+            // color ramp interval
+            float colorRange = 0.5f;
+            float r0 = lambda * (1.0f - colorRange);
+            Vector2 rampInterval = new Vector2(r0, r0 + colorRange);
+            GetComponent<Renderer>().material.SetVector("_RampInterval", rampInterval);
+        }
+
         float t = Mathf.Min(1.0f, (m_time / Globals.m_explosionFadeIn)) - 1.0f;
         Vector3 scale = m_scale * (t * t * t + 1.0f);
 
