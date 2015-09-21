@@ -86,11 +86,12 @@
 			float4 c0 = _Color + tex2D(_DetailTex, texCoord);
             float4 c1 = tex2D(_DecalTex, texCoord);
 
-            OUT.Albedo = float4(c1.a * c1.rgb + (1.0 - c1.a) * c0.rgb, 1.0);
+			OUT.Albedo = float4(0.0, 0.0, 0.0, 0.0);
+            OUT.Emission = float4(c1.a * c1.rgb + (1.0 - c1.a) * c0.rgb, 1.0);
             
             #if ENABLE_RIM_LIGHTING
                 half rim = 1.0 - saturate(dot(normalize(IN.viewDir), OUT.Normal));
-                OUT.Emission = _RimColor.rgb * pow(rim, _RimPower);
+                OUT.Emission += _RimColor.rgb * pow(rim, _RimPower);
             #endif
 		}
 		
