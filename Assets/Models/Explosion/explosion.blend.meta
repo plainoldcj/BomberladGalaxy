@@ -6,10 +6,24 @@ ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Cube
+    100004: Explosion
+    100006: Explosion_X
     400000: //RootNode
+    400002: Cube
+    400004: Explosion
+    400006: Explosion_X
     2300000: //RootNode
+    2300002: Cube
+    2300004: Explosion
+    2300006: Explosion_X
     3300000: //RootNode
+    3300002: Cube
+    3300004: Explosion
+    3300006: Explosion_X
     4300000: Explosion
+    4300002: Cube
+    4300004: Explosion_X
     7400000: Default Take
     9500000: //RootNode
   materials:
@@ -68,8 +82,10 @@ ModelImporter:
     legStretch: .0500000007
     feetSpacing: 0
     rootMotionBoneName: 
+    hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
+  humanoidOversampling: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

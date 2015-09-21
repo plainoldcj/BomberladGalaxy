@@ -90,8 +90,16 @@ public class ViewBomb : MonoBehaviour {
     void OnDestroy() {
         Destroy(m_fuseParticles);
 
-        GameObject explosion = Instantiate(m_explosionPrefab);
-        explosion.GetComponent<Explosion>().SetMapPosition(m_lastMapPos);
-        Destroy(explosion, Globals.m_explosionTimeout);
+        // create explosion in all four directions
+        float mapY = 0.0f;
+        for(int i = 0; i < 4; ++i)
+        {
+            GameObject explosion = Instantiate(m_explosionPrefab);
+            Explosion scr_explosion = explosion.GetComponent<Explosion>();
+            scr_explosion.SetMapPosition(m_lastMapPos);
+            scr_explosion.m_rotation.z = mapY;
+            Destroy(explosion, Globals.m_explosionTimeout);
+            mapY += 90.0f;
+        }
     }
 }
