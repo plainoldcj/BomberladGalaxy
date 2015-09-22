@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Assertions;
 using System.Collections;
 
 public class ViewBomb : MonoBehaviour {
@@ -88,6 +89,16 @@ public class ViewBomb : MonoBehaviour {
         GetComponent<Renderer>().material.SetFloat("_MappingDomain", 0.5f * mapSize);
 	}
 
+    /*
+    returns the range of an explosion in map direction 'dir'. value
+    might be less than the bomb's explosion range if a stone block
+    is in the way.
+    */
+    private int GetExplosionRange(Vector2 dir)
+    {
+        return 0;
+    }
+
     void OnDestroy() {
         Destroy(m_fuseParticles);
 
@@ -96,15 +107,44 @@ public class ViewBomb : MonoBehaviour {
         Destroy(explosionLight, Globals.m_explosionTimeout);
 
         // create explosion in all four directions
+
+        // note that both mapY and mapDir rotate cw
         float mapY = 0.0f;
+        int mapDir = (int)Globals.MapDirection.LEFT;
+
+        SyncBomb scr_syncBomb = m_syncBomb.GetComponent<SyncBomb>();
+        Map scr_map = GameObject.Find("Map").GetComponent<Map>();
+
         for(int i = 0; i < 4; ++i)
         {
-            GameObject explosion = Instantiate(m_explosionPrefab);
-            Explosion scr_explosion = explosion.GetComponent<Explosion>();
-            scr_explosion.SetMapPosition(m_lastMapPos);
-            scr_explosion.m_rotation.z = mapY;
-            Destroy(explosion, Globals.m_explosionTimeout);
+            int range = scr_syncBomb.GetExplosionRange();
+
+            SyncBomb.TouchInfo inf;
+            if(scr_syncBomb.TouchesBlock((Globals.MapDirection)mapDir, out inf))
+            {
+                Block.Type type = scr_map.GetBlockType(inf.tilePosition);
+                if(Block.Type.Wood == type)
+                {
+                    range = inf.distance;
+                }
+                else
+                {
+                    Assert.IsTrue(Block.Type.Stone == type);
+                    range = inf.distance - 1;
+                }
+            }
+
+            if (0 < range)
+            {
+                GameObject explosion = Instantiate(m_explosionPrefab);
+                Explosion scr_explosion = explosion.GetComponent<Explosion>();
+                scr_explosion.SetMapPosition(m_lastMapPos);
+                scr_explosion.m_rotation.z = mapY;
+                Destroy(explosion, Globals.m_explosionTimeout);
+            }
+
             mapY += 90.0f;
+            mapDir = (mapDir + 1) % 4;
         }
     }
 }

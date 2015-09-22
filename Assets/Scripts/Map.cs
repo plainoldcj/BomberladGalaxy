@@ -15,6 +15,20 @@ public class Map : MonoBehaviour {
 
     private Tile[] m_tileMap;
 
+    public Block.Type GetBlockType(Vector2i tilePos)
+    {
+        int tileIdx = Globals.m_numTilesPerEdge * tilePos.x + tilePos.y;
+        Assert.IsTrue(m_tileMap[tileIdx].m_isBlock);
+        return m_tileMap[tileIdx].m_blockType;
+    }
+
+    public int GetBlockHitpoints(Vector2i tilePos)
+    {
+        int tileIdx = Globals.m_numTilesPerEdge * tilePos.x + tilePos.y;
+        Assert.IsTrue(m_tileMap[tileIdx].m_isBlock);
+        return m_tileMap[tileIdx].m_blockHitpoints;
+    }
+
     private void CreateTileMap(int seed, Vector2i[] spawnPos) {                            
         int numTilesPerEdge = Globals.m_numTilesPerEdge;
         

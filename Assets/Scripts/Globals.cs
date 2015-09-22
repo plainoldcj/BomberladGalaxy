@@ -36,6 +36,11 @@ public class Globals {
 	A map is a square array of tiles.
 	*/
 
+    public enum MapDirection
+    {
+        UP, RIGHT, DOWN, LEFT
+    };
+
 	// map constants
 	public static readonly int 		m_numTilesPerEdge = 20;
 	
@@ -70,6 +75,18 @@ public class Globals {
             new Vector2(-mapSize, -mapSize),
             new Vector2( mapSize, -mapSize)
         };
+    }
+
+    public static Vector3 ToCollisionMapVector(MapDirection dir)
+    {
+        Vector3[] rayDirections =
+        {
+                Vector3.forward,    // UP
+                Vector3.right,      // RIGHT
+                Vector3.back,       // DOWN
+                Vector3.left        // LEFT
+        };
+        return rayDirections[(int)dir];
     }
 
     public static Vector2 MapPositionFromTilePosition(Vector2i tilePos) {

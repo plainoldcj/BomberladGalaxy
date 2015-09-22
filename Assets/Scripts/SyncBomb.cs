@@ -11,9 +11,17 @@ public class SyncBomb : NetworkBehaviour {
 
     private GameObject[] m_collisionBombs;
 
+    [SyncVar]
+    private int m_explosionRange = 1;
+
     public GameObject[] collisionBombs
     {
         get { return m_collisionBombs; }
+    }
+
+    public int GetExplosionRange()
+    {
+        return m_explosionRange;
     }
 
     public void SetMapPosition(Vector2 mapPos) {
@@ -56,37 +64,58 @@ public class SyncBomb : NetworkBehaviour {
 	
 	}
 
-    void OnDestroy()
+    public class TouchInfo
     {
-        if (m_isServer)
+        public Vector2i tilePosition;
+        public int      distance; // in adjacent tiles
+    };
+
+    /*
+    finds nearest collision block in explosion range
+    */
+    public bool TouchesBlock(Globals.MapDirection mapDir, out TouchInfo inf)
+    {
+        inf = null;
+        for(int i = 1; i <= m_explosionRange; ++i)
         {
             Vector2 mapPos = Globals.WrapMapPosition(new Vector2(
                 transform.position.x,
                 transform.position.z));
             Vector3 rayOrigin = new Vector3(mapPos.x, 0.0f, mapPos.y) + m_collisionBombPrefab.GetComponent<SphereCollider>().center;
+            Vector3 rayDir = Globals.ToCollisionMapVector(mapDir);
 
-            Vector3[] rayDirections =
+            RaycastHit[] hits = Physics.RaycastAll(rayOrigin, rayDir, i * Globals.m_tileEdgeLength);
+            foreach (RaycastHit hit in hits)
             {
-                Vector3.right,
-                Vector3.left,
-                Vector3.forward,
-                Vector3.back
-            };
-
-            for (int i = 0; i < rayDirections.Length; ++i)
-            {
-                RaycastHit[] hits = Physics.RaycastAll(rayOrigin, rayDirections[i], Globals.m_tileEdgeLength);
-                foreach (RaycastHit hit in hits)
+                if ("TAG_COLLISION_BLOCK" == hit.transform.tag)
                 {
-                    if ("TAG_COLLISION_BLOCK" == hit.transform.tag)
-                    {
-                        GameObject collisionBlock = hit.transform.gameObject;
-                        Vector2i tilePos = collisionBlock.GetComponent<CollisionBlock>().tilePosition;
-                        MSG_DestroyBlock msg = new MSG_DestroyBlock();
-                        msg.m_tilePosX = tilePos.x;
-                        msg.m_tilePosY = tilePos.y;
-                        NetworkServer.SendToAll(MessageTypes.m_destroyBlock, msg);
-                    }
+                    GameObject collisionBlock = hit.transform.gameObject;
+                    inf = new TouchInfo();
+                    inf.tilePosition = collisionBlock.GetComponent<CollisionBlock>().tilePosition;
+                    inf.distance = i;
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    void OnDestroy()
+    {
+        if (m_isServer)
+        {
+            for (int i = 0; i < 4; ++i)
+            {
+                Globals.MapDirection mapDir = (Globals.MapDirection)i;
+
+                TouchInfo inf;
+                if (TouchesBlock(mapDir, out inf))
+                {
+                    Vector2i tilePos = inf.tilePosition;
+                    MSG_DestroyBlock msg = new MSG_DestroyBlock();
+                    msg.m_tilePosX = tilePos.x;
+                    msg.m_tilePosY = tilePos.y;
+                    NetworkServer.SendToAll(MessageTypes.m_destroyBlock, msg);
                 }
             }
         }
