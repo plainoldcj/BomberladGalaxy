@@ -9,21 +9,41 @@ ModelImporter:
     100002: Cube
     100004: Explosion
     100006: Explosion_X
+    100008: Explosion_X2
+    100010: Explosion_X3
+    100012: Explosion_X4
+    100014: Explosion_X5
     400000: //RootNode
     400002: Cube
     400004: Explosion
     400006: Explosion_X
+    400008: Explosion_X2
+    400010: Explosion_X3
+    400012: Explosion_X4
+    400014: Explosion_X5
     2300000: //RootNode
     2300002: Cube
     2300004: Explosion
     2300006: Explosion_X
+    2300008: Explosion_X2
+    2300010: Explosion_X3
+    2300012: Explosion_X4
+    2300014: Explosion_X5
     3300000: //RootNode
     3300002: Cube
     3300004: Explosion
     3300006: Explosion_X
+    3300008: Explosion_X2
+    3300010: Explosion_X3
+    3300012: Explosion_X4
+    3300014: Explosion_X5
     4300000: Explosion
     4300002: Cube
     4300004: Explosion_X
+    4300006: Explosion_X5
+    4300008: Explosion_X4
+    4300010: Explosion_X3
+    4300012: Explosion_X2
     7400000: Default Take
     9500000: //RootNode
   materials:

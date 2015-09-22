@@ -11,6 +11,8 @@ public class SyncPlayer : NetworkBehaviour {
 
     private GameObject m_collisionPlayer;
 
+    private int m_explosionRange = 1;
+
     public GameObject collisionPlayer {
         get { return m_collisionPlayer; }
     }
@@ -56,7 +58,9 @@ public class SyncPlayer : NetworkBehaviour {
         }
         if (!hitBomb) {
             GameObject bomb = Instantiate(m_syncBombPrefab);
-            bomb.GetComponent<SyncBomb>().SetMapPosition(Globals.TileCenterFromMapPosition(mapPos));
+            SyncBomb scr_syncBomb = bomb.GetComponent<SyncBomb>();
+            scr_syncBomb.SetMapPosition(Globals.TileCenterFromMapPosition(mapPos));
+            scr_syncBomb.SetExplosionRange(m_explosionRange);
             NetworkServer.Spawn(bomb);
             RpcDropBomb();
         }
@@ -75,6 +79,18 @@ public class SyncPlayer : NetworkBehaviour {
                     transform.position.z));
 
                 CmdSpawnBomb(mapPos);
+            }
+
+            // TODO: debug only
+            if(Input.GetKeyDown(KeyCode.KeypadPlus))
+            {
+                m_explosionRange = (int)Mathf.Min(m_explosionRange + 1, Globals.m_maxExplosionRange);
+                Debug.Log("player explosion range = " + m_explosionRange);
+            }
+            if(Input.GetKeyDown(KeyCode.KeypadMinus))
+            {
+                m_explosionRange = (int)Mathf.Max(m_explosionRange - 1, 1);
+                Debug.Log("player explosion range = " + m_explosionRange);
             }
         }
 	}

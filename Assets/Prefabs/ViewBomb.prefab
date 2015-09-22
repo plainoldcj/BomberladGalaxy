@@ -93,7 +93,11 @@ MonoBehaviour:
   m_position: {x: 0, y: 0, z: 0}
   m_rotation: {x: 180, y: 0, z: 0}
   m_scale: {x: 1, y: 1, z: 1}
-  m_explosionPrefab: {fileID: 126992, guid: e435aaff785642c4da14853eef836006, type: 2}
+  m_explosionPrefab1: {fileID: 126992, guid: e435aaff785642c4da14853eef836006, type: 2}
+  m_explosionPrefab2: {fileID: 191966, guid: b9ae4e6d160c6cf4f9a854730cb1eb1b, type: 2}
+  m_explosionPrefab3: {fileID: 101042, guid: 603d01f06dceda24e9a2dbcb5785bb20, type: 2}
+  m_explosionPrefab4: {fileID: 113488, guid: 4a08a2accbb605f4e9a91f5e13c8aa65, type: 2}
+  m_explosionPrefab5: {fileID: 152366, guid: e300cfb370c898c449002165bd1724a1, type: 2}
   m_explosionLightPrefab: {fileID: 148216, guid: 177e7d5d9905d6f4da45d68d44986c95,
     type: 2}
   m_fuseParticlesPrefab: {fileID: 144924, guid: c1f57be4d8c4ff84b81fb940e33ae4f6,
@@ -125,6 +129,26 @@ Prefab:
       propertyPath: m_explosionLightPrefab
       value: 
       objectReference: {fileID: 148216, guid: 177e7d5d9905d6f4da45d68d44986c95, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_explosionPrefab1
+      value: 
+      objectReference: {fileID: 126992, guid: e435aaff785642c4da14853eef836006, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_explosionPrefab2
+      value: 
+      objectReference: {fileID: 191966, guid: b9ae4e6d160c6cf4f9a854730cb1eb1b, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_explosionPrefab3
+      value: 
+      objectReference: {fileID: 101042, guid: 603d01f06dceda24e9a2dbcb5785bb20, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_explosionPrefab4
+      value: 
+      objectReference: {fileID: 113488, guid: 4a08a2accbb605f4e9a91f5e13c8aa65, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_explosionPrefab5
+      value: 
+      objectReference: {fileID: 152366, guid: e300cfb370c898c449002165bd1724a1, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 142726}

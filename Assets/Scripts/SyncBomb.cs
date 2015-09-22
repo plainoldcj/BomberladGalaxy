@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.Networking;
 using System.Collections;
 
@@ -17,6 +18,12 @@ public class SyncBomb : NetworkBehaviour {
     public GameObject[] collisionBombs
     {
         get { return m_collisionBombs; }
+    }
+
+    public void SetExplosionRange(int range)
+    {
+        Assert.IsTrue(1 <= range && range <= Globals.m_maxExplosionRange);
+        m_explosionRange = range;
     }
 
     public int GetExplosionRange()

@@ -55,6 +55,7 @@ public class Globals {
     public static readonly float    m_bombTimeout = 3.0f; // in secs, must be odd
     public static readonly float    m_explosionTimeout = 1.0f;
     public static readonly float    m_explosionFadeIn = 0.2f;
+    public static readonly int      m_maxExplosionRange = 5;
 
     // y-coordinate of Sync* gameobjects, which keeps their colliders away
     // from the collision map placed at y=0

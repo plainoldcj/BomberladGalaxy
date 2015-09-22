@@ -8,7 +8,12 @@ public class ViewBomb : MonoBehaviour {
     public Vector3 m_rotation = Vector3.zero;
     public Vector3 m_scale = Vector3.one;
 
-    public GameObject m_explosionPrefab;
+    public GameObject m_explosionPrefab1;
+    public GameObject m_explosionPrefab2;
+    public GameObject m_explosionPrefab3;
+    public GameObject m_explosionPrefab4;
+    public GameObject m_explosionPrefab5;
+
     public GameObject m_explosionLightPrefab;
     public GameObject m_fuseParticlesPrefab;
 
@@ -17,6 +22,20 @@ public class ViewBomb : MonoBehaviour {
     private float       m_time = 0.0f;
     private Vector2     m_lastMapPos = Vector2.zero;
     private GameObject  m_fuseParticles;
+
+    private GameObject GetExplosionPrefabForRange(int range)
+    {
+        GameObject[] prefabs =
+        {
+            m_explosionPrefab1,
+            m_explosionPrefab2,
+            m_explosionPrefab3,
+            m_explosionPrefab4,
+            m_explosionPrefab5
+        };
+        Assert.IsTrue(1 <= range && range <= 5);
+        return prefabs[range - 1];
+    }
 
     public void SetSyncBomb(GameObject syncBomb) {
         m_syncBomb = syncBomb;
@@ -136,7 +155,7 @@ public class ViewBomb : MonoBehaviour {
 
             if (0 < range)
             {
-                GameObject explosion = Instantiate(m_explosionPrefab);
+                GameObject explosion = Instantiate(GetExplosionPrefabForRange(range));
                 Explosion scr_explosion = explosion.GetComponent<Explosion>();
                 scr_explosion.SetMapPosition(m_lastMapPos);
                 scr_explosion.m_rotation.z = mapY;
