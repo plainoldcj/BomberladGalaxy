@@ -74,6 +74,7 @@ public class SyncPlayer : NetworkBehaviour {
     [ClientRpc]
     public void RpcDie()
     {
+        collisionPlayer.GetComponent<CollisionPlayer>().Die();
         viewPlayer.GetComponent<ViewPlayer>().Die();
     }
 

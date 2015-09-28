@@ -8,6 +8,7 @@ public class CollisionPlayer : MonoBehaviour {
 
     public float m_speed = 5.0f;
 
+    private bool                m_isAlive = true;
     private CharacterController m_charController;
     private GameObject          m_syncPlayer;
     private Vector3             m_lastMovement = Vector3.zero;
@@ -23,6 +24,11 @@ public class CollisionPlayer : MonoBehaviour {
 
     public Vector3 lastMovement {
         get { return m_lastMovement; }
+    }
+
+    public void Die()
+    {
+        m_isAlive = false;
     }
 
 	void Start () {
@@ -46,7 +52,7 @@ public class CollisionPlayer : MonoBehaviour {
         // as remote players
         m_charController.SimpleMove(Vector3.zero);
 
-	    if(m_syncPlayer.GetComponent<SyncPlayer>().isLocalPlayer) {
+	    if(m_isAlive && m_syncPlayer.GetComponent<SyncPlayer>().isLocalPlayer) {
             Vector3 oldPosition = transform.position;
 
             Vector3 direction =
