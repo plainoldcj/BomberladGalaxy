@@ -16,6 +16,11 @@ public class CollisionPlayer : MonoBehaviour {
         m_syncPlayer = syncPlayer;
     }
 
+    public GameObject GetSyncPlayer()
+    {
+        return m_syncPlayer;
+    }
+
     public Vector3 lastMovement {
         get { return m_lastMovement; }
     }
@@ -36,6 +41,10 @@ public class CollisionPlayer : MonoBehaviour {
             m_syncPlayer.transform.position.x,
             m_syncPlayer.transform.position.z));
         transform.position = new Vector3(mapPos.x, transform.position.y, mapPos.y);
+
+        // applies gravitation, brings remote player objects on same y-coordinate
+        // as remote players
+        m_charController.SimpleMove(Vector3.zero);
 
 	    if(m_syncPlayer.GetComponent<SyncPlayer>().isLocalPlayer) {
             Vector3 oldPosition = transform.position;

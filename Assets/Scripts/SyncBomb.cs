@@ -107,6 +107,36 @@ public class SyncBomb : NetworkBehaviour {
         return false;
     }
 
+    private void SV_KillPlayers(Globals.MapDirection mapDir, int range)
+    {
+        Vector2 mapPos0 = Globals.WrapMapPosition(new Vector2(
+            transform.position.x,
+            transform.position.z));
+        Vector3 rayDir = Globals.ToCollisionMapVector(mapDir);
+
+        Vector3 center = m_collisionBombPrefab.GetComponent<SphereCollider>().center;
+        center.y = 0.0f;
+
+        for (int i = 0; i < Globals.m_mapGridOffsets.Length; ++i)
+        {
+            Vector2 mapPos = mapPos0 + Globals.m_mapGridOffsets[i];
+            Vector3 rayOrigin = new Vector3(mapPos.x, 0.0f, mapPos.y) + center;
+
+            RaycastHit[] hits = Physics.RaycastAll(rayOrigin, rayDir, range * Globals.m_tileEdgeLength);
+            foreach (RaycastHit hit in hits)
+            {
+                if ("TAG_COLLISION_PLAYER" == hit.transform.tag)
+                {
+                    Debug.Log("explosion in direction " + mapDir + " hit collision player");
+                    GameObject collisionPlayer = hit.transform.gameObject;
+                    GameObject syncPlayer = collisionPlayer.GetComponent<CollisionPlayer>().GetSyncPlayer();
+                    syncPlayer.GetComponent<SyncPlayer>().RpcDie();
+                }
+            }
+
+        }
+    }
+
     void OnDestroy()
     {
         if (m_isServer)
@@ -114,6 +144,8 @@ public class SyncBomb : NetworkBehaviour {
             for (int i = 0; i < 4; ++i)
             {
                 Globals.MapDirection mapDir = (Globals.MapDirection)i;
+
+                int range = m_explosionRange;
 
                 TouchInfo inf;
                 if (TouchesBlock(mapDir, out inf))
@@ -124,6 +156,8 @@ public class SyncBomb : NetworkBehaviour {
                     msg.m_tilePosY = tilePos.y;
                     NetworkServer.SendToAll(MessageTypes.m_destroyBlock, msg);
                 }
+
+                SV_KillPlayers(mapDir, range);
             }
         }
     }

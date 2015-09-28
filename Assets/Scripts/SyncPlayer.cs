@@ -71,6 +71,12 @@ public class SyncPlayer : NetworkBehaviour {
         viewPlayer.GetComponent<ViewPlayer>().DropBomb();
     }
 
+    [ClientRpc]
+    public void RpcDie()
+    {
+        viewPlayer.GetComponent<ViewPlayer>().Die();
+    }
+
 	void Update () {
         if(isLocalPlayer) {
             if(Input.GetButtonDown("Fire1")) {

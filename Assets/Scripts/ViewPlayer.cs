@@ -27,6 +27,11 @@ public class ViewPlayer : MonoBehaviour {
         m_syncPlayer = syncPlayer;
     }
 
+    public void Die()
+    {
+        GetComponent<Animator>().SetBool("dead", true);
+    }
+
     public void DropBomb() {
         GetComponent<Animator>().SetTrigger("drop");
     }
