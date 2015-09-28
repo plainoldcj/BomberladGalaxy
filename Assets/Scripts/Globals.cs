@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.Networking;
 using System.Collections;
 
@@ -168,5 +169,31 @@ public class Globals {
         };
         
         return pos;
+    }
+
+    private static GameObject m_localPlayer = null;
+
+    /*
+    TODO: if i recall correctly, the local player can also be obtained
+    by some networking class. if i ever find out which one, i replace
+    the function below. also, the function below does not take into account
+    that a new local player gameobject might be spawned.
+    */
+    public static GameObject FindLocalPlayer()
+    {
+        if (null == m_localPlayer)
+        {
+            GameObject[] syncPlayers = GameObject.FindGameObjectsWithTag("TAG_SYNC_PLAYER");
+            foreach(GameObject it in syncPlayers)
+            {
+                SyncPlayer scr_syncPlayer = it.GetComponent<SyncPlayer>();
+                if(scr_syncPlayer && scr_syncPlayer.isLocalPlayer)
+                {
+                    m_localPlayer = it;
+                }
+            }
+        }
+        Assert.IsNotNull(m_localPlayer);
+        return m_localPlayer;
     }
 }
