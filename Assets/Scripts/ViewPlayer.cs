@@ -111,13 +111,14 @@ public class ViewPlayer : MonoBehaviour {
 
         Matrix4x4 viewTransform = Matrix4x4.TRS(Vector3.zero, m_viewRotation, Vector3.one);
 
-		Matrix4x4 localToWorld =
+        Matrix4x4 localToWorld =
                 m_rootBone.worldToLocalMatrix *
                 m_mapOrigin.transform.localToWorldMatrix *
                 offset *
                 localToMap *
                 viewTransform *
-                localTransform;
+                localTransform *
+                m_rootBone.localToWorldMatrix;
 
 		m_mesh.GetComponent<Renderer>().material.SetMatrix("_LocalToWorld", localToWorld);
 		m_mesh.GetComponent<Renderer>().material.SetFloat("_MappingDomain", 0.5f * mapSize);
