@@ -786,8 +786,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e7deb5288e687f4d808061bc8b7befb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_position: {x: .200000003, y: 0, z: 0}
-  m_rotation: {x: 0, y: 90, z: 0}
+  m_position: {x: .200000003, y: 0, z: -.389999986}
+  m_rotation: {x: 0, y: 90, z: -90}
   m_scale: {x: .699999988, y: .699999988, z: .699999988}
   m_viewInterpolationFactor: .100000001
   m_speedDecay: 3
@@ -909,6 +909,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_speedDecay
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_position.z
+      value: -.389999986
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_rotation.z
+      value: -90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
