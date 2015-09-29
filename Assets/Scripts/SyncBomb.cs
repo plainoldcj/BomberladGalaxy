@@ -5,12 +5,17 @@ using System.Collections;
 
 public class SyncBomb : NetworkBehaviour {
 
+    // set this in prefab, must not change at runtime
+    public float m_spawnRangeFactor = 1.3f;
+
     public GameObject m_viewBombPrefab;
     public GameObject m_collisionBombPrefab;
 
     private bool m_isServer = false;
 
-    private GameObject[] m_collisionBombs;
+    private GameObject[]    m_collisionBombs;
+    private GameObject      m_localCollisionPlayer = null;
+    private float           m_colliderDistance = 0.0f;
 
     [SyncVar]
     private int m_explosionRange = 1;
@@ -64,11 +69,44 @@ public class SyncBomb : NetworkBehaviour {
             m_collisionBombs[i] = collisionBomb;
         }
 
+        m_localCollisionPlayer = Globals.FindLocalPlayer().GetComponent<SyncPlayer>().collisionPlayer;
+
+        m_colliderDistance = m_collisionBombPrefab.GetComponent<SphereCollider>().radius +
+            m_localCollisionPlayer.GetComponent<CharacterController>().radius;
+
         Destroy(gameObject, Globals.m_bombTimeout);
 	}
+
+    // 'myPos', 'otherPos' in collision space
+    private bool InSpawnRange(Vector3 myPos, Vector3 otherPos)
+    {
+        Vector2 center = new Vector2(myPos.x, myPos.z);
+        float radius = m_colliderDistance * m_spawnRangeFactor;
+        return (new Vector2(otherPos.x, otherPos.z) - center).sqrMagnitude <= (radius * radius);
+    }
 	
 	void Update () {
-	
+        // test each collision bomb for intersection with collision player	
+        bool touchesPlayer = false;
+        for(int i = 0; !touchesPlayer && i < m_collisionBombs.Length; ++i)
+        {
+            // calling 'GetCollisionMapPosition', in contrast to reading transform.position, works
+            // even if Update() hasnt been called yet.
+            Vector3 bombPos = m_collisionBombs[i].GetComponent<CollisionBomb>().GetCollisionMapPosition();
+            if(InSpawnRange(bombPos, m_localCollisionPlayer.transform.position))
+            {
+                touchesPlayer = true;
+            }
+        }
+
+        // enable collision with bombs, if there is no intersection
+        if(!touchesPlayer)
+        {
+            foreach(GameObject it in m_collisionBombs)
+            {
+                it.GetComponent<SphereCollider>().isTrigger = false;
+            }
+        }
 	}
 
     public class TouchInfo
