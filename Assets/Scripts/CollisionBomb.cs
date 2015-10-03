@@ -26,7 +26,7 @@ public class CollisionBomb : MonoBehaviour {
     private Vector2 GetMapPosition()
     {
         // copy position from my syncplayer and wrap it
-        Vector2 mapPos = Globals.WrapMapPosition(new Vector2(
+		Vector2 mapPos = Globals.WrapMapPosition(new Vector2(
             m_syncBomb.transform.position.x,
             m_syncBomb.transform.position.z));
         return mapPos;
@@ -44,6 +44,8 @@ public class CollisionBomb : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        transform.position = GetCollisionMapPosition();
+		if (m_syncBomb != null) {
+			transform.position = GetCollisionMapPosition ();
+		}
 	}
 }

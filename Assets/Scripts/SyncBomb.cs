@@ -168,7 +168,8 @@ public class SyncBomb : NetworkBehaviour {
                     Debug.Log("explosion in direction " + mapDir + " hit collision player");
                     GameObject collisionPlayer = hit.transform.gameObject;
                     GameObject syncPlayer = collisionPlayer.GetComponent<CollisionPlayer>().GetSyncPlayer();
-                    syncPlayer.GetComponent<SyncPlayer>().RpcDie();
+					if (syncPlayer)
+	                    syncPlayer.GetComponent<SyncPlayer>().RpcDie();
                 }
             }
 
@@ -177,7 +178,7 @@ public class SyncBomb : NetworkBehaviour {
 
     void OnDestroy()
     {
-        if (m_isServer)
+		if (m_isServer)
         {
             for (int i = 0; i < 4; ++i)
             {

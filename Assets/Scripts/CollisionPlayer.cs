@@ -42,7 +42,10 @@ public class CollisionPlayer : MonoBehaviour {
 	}
 	
 	void Update () {
-        // copy position from my syncplayer and wrap it
+		if (m_syncPlayer.gameObject == null) {
+			return;
+		}
+		// copy position from my syncplayer and wrap it
         Vector2 mapPos = Globals.WrapMapPosition(new Vector2(
             m_syncPlayer.transform.position.x,
             m_syncPlayer.transform.position.z));

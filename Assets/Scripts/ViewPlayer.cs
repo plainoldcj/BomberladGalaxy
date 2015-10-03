@@ -50,6 +50,10 @@ public class ViewPlayer : MonoBehaviour {
 	}
 
 	void Update () {
+		if (m_syncPlayer.gameObject == null) {
+			return;
+		}
+
         float mapSize = Globals.m_tileEdgeLength * Globals.m_numTilesPerEdge;
 
         // NOTE: view direction computation with unwrapped coordinates

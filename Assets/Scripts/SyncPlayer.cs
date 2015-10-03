@@ -15,6 +15,8 @@ public class SyncPlayer : NetworkBehaviour {
 
     private int m_explosionRange = 1;
 
+	public bool isDead = false;
+
     public GameObject collisionPlayer {
         get { return m_collisionPlayer; }
     }
@@ -79,17 +81,22 @@ public class SyncPlayer : NetworkBehaviour {
     {
         collisionPlayer.GetComponent<CollisionPlayer>().Die();
         viewPlayer.GetComponent<ViewPlayer>().Die();
+		isDead = true;
     }
 
 	void Update () {
         if(isLocalPlayer) {
-            if(Input.GetButtonDown("Fire1")) {
-                Vector2 mapPos = Globals.WrapMapPosition(new Vector2(
-                    transform.position.x,
-                    transform.position.z));
-
-                CmdSpawnBomb(mapPos);
-            }
+			if(Input.GetButtonDown("Fire1")) {
+				if (isDead) {
+					// TODO: switch camera? follow next player..
+				} else {
+					Vector2 mapPos = Globals.WrapMapPosition (new Vector2 (
+						                            transform.position.x,
+						                            transform.position.z));
+					CmdSpawnBomb (mapPos);
+				}
+			}
+				
 
             // TODO: debug only
             if(Input.GetKeyDown(KeyCode.KeypadPlus))

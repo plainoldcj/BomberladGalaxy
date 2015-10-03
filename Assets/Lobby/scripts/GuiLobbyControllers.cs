@@ -347,8 +347,8 @@ public class ExitToLobbyCanvasControl : CanvasControl
 
 		hooks.OnExitHook = OnGUIExitToLobby;
 
-		EventSystem.current.firstSelectedGameObject = hooks.firstButton.gameObject;
-		EventSystem.current.SetSelectedGameObject(hooks.firstButton.gameObject);
+		//EventSystem.current.firstSelectedGameObject = hooks.firstButton.gameObject;
+		//EventSystem.current.SetSelectedGameObject(hooks.firstButton.gameObject);
 	}
 
 	public override void OnLevelWasLoaded()
@@ -360,13 +360,15 @@ public class ExitToLobbyCanvasControl : CanvasControl
 		if (hooks == null)
 			return;
 
-		EventSystem.current.firstSelectedGameObject = hooks.firstButton.gameObject;
-		EventSystem.current.SetSelectedGameObject(hooks.firstButton.gameObject);
+		//EventSystem.current.firstSelectedGameObject = hooks.firstButton.gameObject;
+		//EventSystem.current.SetSelectedGameObject(hooks.firstButton.gameObject);
 	}
 
 	public void OnGUIExitToLobby()
 	{
-		foreach (var player in GuiLobbyManager.s_Singleton.lobbySlots)
+		GuiLobbyManager.s_Singleton.StopHost ();
+		Hide ();
+		/*foreach (var player in GuiLobbyManager.s_Singleton.lobbySlots)
 		{
 			if (player != null)
 			{
@@ -374,9 +376,10 @@ public class ExitToLobbyCanvasControl : CanvasControl
 				if (playerLobby)
 				{
 					playerLobby.CmdExitToLobby();
+
 				}
 			}
-		}
+		}*/
 	}
 }
 

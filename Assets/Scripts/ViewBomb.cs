@@ -57,6 +57,9 @@ public class ViewBomb : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (m_syncBomb == null) {
+			return;
+		}
         m_time += Time.deltaTime;
         
         float l = Mathf.Abs(Mathf.Sin(0.5f * Mathf.PI * m_time));
@@ -119,6 +122,9 @@ public class ViewBomb : MonoBehaviour {
     }
 
     void OnDestroy() {
+		if (m_syncBomb == null) {
+			return;
+		}
         Destroy(m_fuseParticles);
 
         GameObject explosionLight = Instantiate(m_explosionLightPrefab);

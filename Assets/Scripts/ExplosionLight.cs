@@ -23,6 +23,9 @@ public class ExplosionLight : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (m_mapOrigin == null) {
+			return;
+		}
         m_time += Time.deltaTime;
 
         // animate light intensity

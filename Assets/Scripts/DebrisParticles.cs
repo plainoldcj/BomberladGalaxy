@@ -36,6 +36,9 @@ public class DebrisParticles : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (m_mapOrigin == null) {
+			return;
+		}
         ParticleSystem particleSystem = GetComponent<ParticleSystem>();
 
         int numParticles = particleSystem.GetParticles(m_particles);

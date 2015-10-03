@@ -55,10 +55,6 @@ public class GameController : NetworkBehaviour {
 
         NetworkServer.SendToAll(MessageTypes.m_startGame, msg);
     }
-
-	void Start () {
-        EventSystem.current.SetSelectedGameObject(null);
-	}
 	
     [ClientCallback]
 	void Update () {
