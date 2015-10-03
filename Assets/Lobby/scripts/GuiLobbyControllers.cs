@@ -142,8 +142,6 @@ public class OfflineCanvasControl : CanvasControl
 	{
 		GuiLobbyManager.s_Singleton.StartHost();
 		GuiLobbyManager.s_Singleton.onlineCanvas.Show("Host");
-
-        MessageQueue.Instance.OnClientConnected();
 	}
 
 	public void OnGUIStartServer()
@@ -161,16 +159,20 @@ public class OfflineCanvasControl : CanvasControl
 		GuiLobbyManager.s_Singleton.networkAddress = hooks.GetAddress();
 		GuiLobbyManager.s_Singleton.StartClient();
 		GuiLobbyManager.s_Singleton.onlineCanvas.Show("Client");
-
-        MessageQueue.Instance.OnClientConnected();
 	}
 
 	public void OnGUIStartMatchMaker()
 	{
 		Hide();
 
+		// list matches
 		GuiLobbyManager.s_Singleton.StartMatchMaker();
-		GuiLobbyManager.s_Singleton.matchMakerCanvas.Show();
+		var mm = GuiLobbyManager.s_Singleton.matchMaker;
+
+		mm.ListMatches (0, 20, "", GuiLobbyManager.s_Singleton.OnMatchList);
+
+		//GuiLobbyManager.s_Singleton.StartMatchMaker();
+		//GuiLobbyManager.s_Singleton.matchMakerCanvas.Show();
 	}
 }
 

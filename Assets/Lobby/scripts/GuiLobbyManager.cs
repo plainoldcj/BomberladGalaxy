@@ -55,10 +55,19 @@ public class GuiLobbyManager : NetworkLobbyManager
 	public override bool OnLobbyServerSceneLoadedForPlayer(GameObject lobbyPlayer, GameObject gamePlayer)
 	{
 		//This hook allows you to apply state data from the lobby-player to the game-player
-		//var cc = lobbyPlayer.GetComponent<ColorControl>();
-		//var playerX = gamePlayer.GetComponent<Player>();
-		//playerX.myColor = cc.myColor;
+		var cc = lobbyPlayer.GetComponent<ColorControl>();
+		var playerX = gamePlayer.GetComponent<SyncPlayer>();
+		playerX.playerColor = cc.myColor;
+
+		//material.color = cc.myColor;
+
 		return true;
+	}
+
+	public override void OnServerConnect (NetworkConnection conn)
+	{
+		base.OnServerConnect (conn);
+		MessageQueue.Instance.OnServerConnected ();
 	}
 
 	// ----------------- Client callbacks ------------------
@@ -118,4 +127,27 @@ public class GuiLobbyManager : NetworkLobbyManager
 			exitToLobbyCanvas.Show();
 		}
 	}
+
+
+	public override void OnMatchList (ListMatchResponse matchList)
+	{
+		if (matchList.matches.Count == 0) {
+			print ("Match doesn't exists! Creating one...");
+			var createReq = new CreateMatchRequest ();
+			createReq.name = "Bomberlad";
+			createReq.size = 8;
+			createReq.advertise = true;
+			createReq.password = "";
+			this.matchMaker.CreateMatch (createReq, this.OnMatchCreate);
+		} else {
+			matchMaker.JoinMatch(matchList.matches[0].networkId, "", OnMatchJoined);
+		}
+	}
+
+	public override void OnClientConnect (NetworkConnection conn)
+	{
+		base.OnClientConnect (conn);
+		MessageQueue.Instance.OnClientConnected (conn);
+	}
+
 }

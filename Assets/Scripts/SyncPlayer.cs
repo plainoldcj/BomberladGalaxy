@@ -9,6 +9,8 @@ public class SyncPlayer : NetworkBehaviour {
 
     public GameObject m_syncBombPrefab;
 
+	public Color playerColor;
+
     private GameObject m_collisionPlayer;
 
     private int m_explosionRange = 1;
@@ -43,6 +45,7 @@ public class SyncPlayer : NetworkBehaviour {
         
         viewPlayer = Instantiate(m_viewPlayerPrefab);
         viewPlayer.GetComponent<ViewPlayer>().SetSyncPlayer(gameObject);
+		viewPlayer.GetComponentInChildren<Renderer> ().material.color = playerColor;
 	}
 	
     [Command]
