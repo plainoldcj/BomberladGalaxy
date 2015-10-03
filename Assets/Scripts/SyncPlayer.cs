@@ -111,4 +111,9 @@ public class SyncPlayer : NetworkBehaviour {
             }
         }
 	}
+
+	void OnDestroy() {
+		Destroy (viewPlayer);
+	}
+
 }
