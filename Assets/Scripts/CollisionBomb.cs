@@ -7,6 +7,8 @@ public class CollisionBomb : MonoBehaviour {
     private int         m_gridIndex = -1;
     private GameObject  m_syncBomb;
 
+    private static GameObject m_collisionBombGroup = null;
+
     public void SetGridIndex(int gridIndex)
     {
         m_gridIndex = gridIndex;
@@ -40,6 +42,12 @@ public class CollisionBomb : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        if(null == m_collisionBombGroup) {
+            m_collisionBombGroup =
+                GameObject.Find("CollisionBombs") ??
+                new GameObject("CollisionBombs");
+        }
+        transform.parent = m_collisionBombGroup.transform;
 	}
 
 	// Update is called once per frame
