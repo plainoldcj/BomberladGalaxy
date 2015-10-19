@@ -11,8 +11,12 @@ public class SyncBomb : NetworkBehaviour {
     public GameObject m_viewBombPrefab;
     public GameObject m_collisionBombPrefab;
 
-    private bool m_isServer = false;
+    private bool            m_isServer = false;
 
+    private bool            m_isDead = false;
+    private float           m_timeAlive = 0.0f;
+
+    private GameObject      m_viewBomb;
     private GameObject[]    m_collisionBombs;
     private GameObject      m_localCollisionPlayer = null;
     private float           m_colliderDistance = 0.0f;
@@ -51,9 +55,8 @@ public class SyncBomb : NetworkBehaviour {
         }
 
 	    // spawn viewbomb for this syncbomb
-        GameObject viewBomb = Instantiate(m_viewBombPrefab);
-        viewBomb.GetComponent<ViewBomb>().SetSyncBomb(gameObject);
-        Destroy(viewBomb, Globals.m_bombTimeout);
+        m_viewBomb = Instantiate(m_viewBombPrefab);
+        m_viewBomb.GetComponent<ViewBomb>().SetSyncBomb(gameObject);
 
         // spawn collisionbombs for this syncbomb
         Vector2[] offsets = Globals.m_mapGridOffsets;
@@ -65,7 +68,6 @@ public class SyncBomb : NetworkBehaviour {
             scr_collisionBomb.syncBomb = gameObject;
             scr_collisionBomb.SetGridIndex(i);
             scr_collisionBomb.SetMapGridOffset(offsets[i]);
-            Destroy(collisionBomb, Globals.m_bombTimeout);
             m_collisionBombs[i] = collisionBomb;
         }
 
@@ -73,8 +75,6 @@ public class SyncBomb : NetworkBehaviour {
 
         m_colliderDistance = m_collisionBombPrefab.GetComponent<SphereCollider>().radius +
             m_localCollisionPlayer.GetComponent<CharacterController>().radius;
-
-        Destroy(gameObject, Globals.m_bombTimeout);
 	}
 
     // 'myPos', 'otherPos' in collision space
@@ -106,6 +106,11 @@ public class SyncBomb : NetworkBehaviour {
             {
                 it.GetComponent<SphereCollider>().isTrigger = false;
             }
+        }
+
+        m_timeAlive += Time.deltaTime;
+        if(!m_isDead && Globals.m_bombTimeout < m_timeAlive) {
+            Explode();
         }
 	}
 
@@ -176,8 +181,10 @@ public class SyncBomb : NetworkBehaviour {
         }
     }
 
-    void OnDestroy()
+    public void Explode()
     {
+        Assert.IsFalse(m_isDead);
+
 		if (m_isServer)
         {
             for (int i = 0; i < 4; ++i)
@@ -199,5 +206,13 @@ public class SyncBomb : NetworkBehaviour {
                 SV_KillPlayers(mapDir, range);
             }
         }
+
+        m_viewBomb.GetComponent<ViewBomb>().CreateExplosion();
+
+        m_isDead = true;
+
+        Destroy(m_viewBomb);
+        foreach(GameObject obj in m_collisionBombs) Destroy(obj);
+        Destroy(gameObject);
     }
 }

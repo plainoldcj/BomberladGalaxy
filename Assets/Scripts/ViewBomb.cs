@@ -48,6 +48,7 @@ public class ViewBomb : MonoBehaviour {
         GetComponent<Renderer>().material.EnableKeyword("ENABLE_RIM_LIGHTING");
 
         m_fuseParticles = Instantiate(m_fuseParticlesPrefab);
+        m_fuseParticles.transform.parent = transform;
 
         // forces the gameobject to be placed at a sensible position,
         // prevents spurious spawns around local player
@@ -121,12 +122,7 @@ public class ViewBomb : MonoBehaviour {
         return 0;
     }
 
-    void OnDestroy() {
-		if (m_syncBomb == null) {
-			return;
-		}
-        Destroy(m_fuseParticles);
-
+    public void CreateExplosion() {
         GameObject explosionLight = Instantiate(m_explosionLightPrefab);
         explosionLight.GetComponent<ExplosionLight>().SetMapPosition(m_lastMapPos);
         Destroy(explosionLight, Globals.m_explosionTimeout);
@@ -137,6 +133,7 @@ public class ViewBomb : MonoBehaviour {
         float mapY = 0.0f;
         int mapDir = (int)Globals.MapDirection.LEFT;
 
+        Assert.IsNotNull(m_syncBomb);
         SyncBomb scr_syncBomb = m_syncBomb.GetComponent<SyncBomb>();
         Map scr_map = GameObject.Find("Map").GetComponent<Map>();
 
