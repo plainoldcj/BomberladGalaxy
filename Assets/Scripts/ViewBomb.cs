@@ -54,6 +54,8 @@ public class ViewBomb : MonoBehaviour {
         // prevents spurious spawns around local player
         Update ();
         m_fuseParticles.GetComponent<FuseParticles>().DoUpdate();
+
+        GetComponent<MeshRenderer>().enabled = true;
 	}
 	
 	// Update is called once per frame
