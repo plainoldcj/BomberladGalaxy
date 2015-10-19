@@ -42,6 +42,8 @@ public class CollisionPlayer : MonoBehaviour {
 	}
 	
 	void Update () {
+        m_lastMovement = Vector3.zero;
+
 		if (m_syncPlayer.gameObject == null) {
 			return;
 		}
