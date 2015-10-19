@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Networking;
-using System.Collections;
+using System.Collections.Generic;
 
 public class SyncBomb : NetworkBehaviour {
 
@@ -42,6 +42,10 @@ public class SyncBomb : NetworkBehaviour {
 
     public void SetMapPosition(Vector2 mapPos) {
         transform.position = new Vector3(mapPos.x, Globals.m_syncYOff, mapPos.y);
+    }
+
+    public bool IsDead() {
+        return m_isDead;
     }
 
 	void Start () {
@@ -109,11 +113,14 @@ public class SyncBomb : NetworkBehaviour {
         }
 
         m_timeAlive += Time.deltaTime;
-        if(!m_isDead && Globals.m_bombTimeout < m_timeAlive) {
-            Explode();
-            Destroy(gameObject);
+        if (isServer)
+        {
+            if (!m_isDead && Globals.m_bombTimeout < m_timeAlive)
+            {
+                SV_Explode();
+            }
         }
-	}
+    }
 
     public class TouchInfo
     {
@@ -151,7 +158,7 @@ public class SyncBomb : NetworkBehaviour {
         return false;
     }
 
-    private void SV_KillPlayers(Globals.MapDirection mapDir, int range)
+    private void SV_TouchInRange(Globals.MapDirection mapDir, int range, Queue<GameObject> touchedBombs, HashSet<GameObject> touchedPlayers)
     {
         Vector2 mapPos0 = Globals.WrapMapPosition(new Vector2(
             transform.position.x,
@@ -174,20 +181,47 @@ public class SyncBomb : NetworkBehaviour {
                     Debug.Log("explosion in direction " + mapDir + " hit collision player");
                     GameObject collisionPlayer = hit.transform.gameObject;
                     GameObject syncPlayer = collisionPlayer.GetComponent<CollisionPlayer>().GetSyncPlayer();
-					if (syncPlayer)
-	                    syncPlayer.GetComponent<SyncPlayer>().RpcDie();
+                    touchedPlayers.Add(syncPlayer);
+                }
+                if("TAG_COLLISION_BOMB" == hit.transform.tag)
+                {
+                    Debug.Log("explosion in direction " + mapDir + " hit collision bomb");
+                    GameObject collisionBomb = hit.transform.gameObject;
+                    GameObject syncBomb = collisionBomb.GetComponent<CollisionBomb>().syncBomb;
+                    SyncBomb scr_syncBomb = syncBomb.GetComponent<SyncBomb>();
+                    if(!scr_syncBomb.IsDead()) {
+                        touchedBombs.Enqueue(syncBomb);
+                        scr_syncBomb.m_isDead = true;
+                    }
                 }
             }
 
         }
     }
 
-    public void Explode()
+    private static bool[] m_touchedTiles = new bool[Globals.m_numTilesPerEdge * Globals.m_numTilesPerEdge];
+
+    public void SV_Explode()
     {
         Assert.IsFalse(m_isDead);
 
-		if (m_isServer)
+        List<GameObject> bombDeathRow = new List<GameObject>();
+        HashSet<GameObject> playerDeathRow = new HashSet<GameObject>();
+        Queue<GameObject> bombQueue = new Queue<GameObject>();
+
+        // reset touched tiles
+        for(int i = 0; i < Globals.m_numTilesPerEdge * Globals.m_numTilesPerEdge; ++i) m_touchedTiles[i] = false;
+
+        // invariant: bomb \in bombQueue => bomb.isDead = true (converse is not true!)
+        bombQueue.Enqueue(gameObject);
+        m_isDead = true;
+
+        // collect all touched tiles, players, and bombs
+        while (0 < bombQueue.Count)
         {
+            GameObject bomb = bombQueue.Dequeue();
+            SyncBomb scr_syncBomb = bomb.GetComponent<SyncBomb>();
+
             for (int i = 0; i < 4; ++i)
             {
                 Globals.MapDirection mapDir = (Globals.MapDirection)i;
@@ -195,22 +229,52 @@ public class SyncBomb : NetworkBehaviour {
                 int range = m_explosionRange;
 
                 TouchInfo inf;
-                if (TouchesBlock(mapDir, out inf))
+                if (scr_syncBomb.TouchesBlock(mapDir, out inf))
                 {
                     Vector2i tilePos = inf.tilePosition;
-                    MSG_DestroyBlock msg = new MSG_DestroyBlock();
-                    msg.m_tilePosX = tilePos.x;
-                    msg.m_tilePosY = tilePos.y;
-                    NetworkServer.SendToAll(MessageTypes.m_destroyBlock, msg);
+                    int tileIdx = Globals.m_numTilesPerEdge * tilePos.x + tilePos.y;
+                    m_touchedTiles[tileIdx] = true;
                 }
 
-                SV_KillPlayers(mapDir, range);
+                scr_syncBomb.SV_TouchInRange(mapDir, range, bombQueue, playerDeathRow);
+            }
+
+            bombDeathRow.Add(bomb);
+        }
+
+        // destroy tiles
+        for (int tileX = 0; tileX < Globals.m_numTilesPerEdge; ++tileX)
+            for (int tileY = 0; tileY < Globals.m_numTilesPerEdge; ++tileY)
+            {
+                {
+                    int tileIdx = Globals.m_numTilesPerEdge * tileX + tileY;
+                if (m_touchedTiles[tileIdx])
+                {
+                    MSG_DestroyBlock msg = new MSG_DestroyBlock();
+                    msg.m_tilePosX = tileX;
+                    msg.m_tilePosY = tileY;
+                    NetworkServer.SendToAll(MessageTypes.m_destroyBlock, msg);
+                }
             }
         }
 
-        m_viewBomb.GetComponent<ViewBomb>().CreateExplosion();
+        // destroy bombs
+        foreach(GameObject obj in bombDeathRow)
+        {
+            obj.GetComponent<SyncBomb>().RpcExplode();
+        }
 
-        m_isDead = true;
+        // destroy players
+        foreach(GameObject obj in playerDeathRow)
+        {
+            obj.GetComponent<SyncPlayer>().RpcDie();
+        }
+    }
+
+    [ClientRpc]
+    private void RpcExplode() {
+        m_viewBomb.GetComponent<ViewBomb>().CreateExplosion();
+        Destroy(gameObject);
     }
 
     void OnDestroy() {
