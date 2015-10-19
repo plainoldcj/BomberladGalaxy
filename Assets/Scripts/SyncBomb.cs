@@ -111,6 +111,7 @@ public class SyncBomb : NetworkBehaviour {
         m_timeAlive += Time.deltaTime;
         if(!m_isDead && Globals.m_bombTimeout < m_timeAlive) {
             Explode();
+            Destroy(gameObject);
         }
 	}
 
@@ -210,9 +211,10 @@ public class SyncBomb : NetworkBehaviour {
         m_viewBomb.GetComponent<ViewBomb>().CreateExplosion();
 
         m_isDead = true;
+    }
 
+    void OnDestroy() {
         Destroy(m_viewBomb);
         foreach(GameObject obj in m_collisionBombs) Destroy(obj);
-        Destroy(gameObject);
     }
 }
