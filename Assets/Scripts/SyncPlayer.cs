@@ -9,7 +9,8 @@ public class SyncPlayer : NetworkBehaviour {
 
     public GameObject m_syncBombPrefab;
 
-	public Color playerColor;
+    [SyncVar]
+    public Color playerColor = Color.black;
 
     private GameObject m_collisionPlayer;
 
